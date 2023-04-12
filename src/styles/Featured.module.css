@@ -1,0 +1,46 @@
+.container {
+    height: calc(100vh - 100px);
+    background-color: #D1411E;
+    overflow: hidden;
+    position: relative;
+    padding-bottom: 30px;
+}
+
+.arrowContainer {
+    position: absolute;
+    width: 10%;
+    height: 20%;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.wrapper {
+    width: 300vw;
+    height: 100%;
+    display: flex;
+    transition: all 1.5s ease-in-out;
+}
+
+.imgContainer {
+    width: 100vw;
+    height: 100%;
+    position: relative;
+}
+.promotion {
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    z-index: 2;
+    font-size: 90px;
+    color: whitesmoke;
+
+}
+
+@media screen and (max-width:480px) {
+    .container {
+        height: 50vh;
+    }    
+}
