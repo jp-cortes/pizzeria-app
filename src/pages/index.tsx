@@ -1,12 +1,26 @@
-import Head from 'next/head'
+import Head from 'next/head';
 // import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
-import Featured from '@/components/Featured'
-import PizzaList from '@/components/PizzaList'
+import { NextApiRequest, NextApiResponse } from "next";
+import styles from '@/styles/Home.module.css';
+import Featured from '@/components/Featured';
+import PizzaList from '@/components/PizzaList';
+import axios from 'axios';
 
 // const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
+type Data = {
+  _id: string,
+  title: string,
+  desc: string,
+  img: string,
+  prices: [number],
+  extraOptions: [string | number],
+  createdAt: string,
+  updatedAt: string,
+  __v: number
+}
+
+export default function Home({ pizzaList }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -17,7 +31,18 @@ export default function Home() {
       </Head>
      
       <Featured/>
-      <PizzaList/>
+      <PizzaList pizzaList={pizzaList}/>
     </div>
   )
+}
+
+
+export async function getServerSideProps(req:NextApiRequest, res:NextApiResponse) {
+  const resp = await axios.get("http://localhost:3000/api/products");
+  // const { pizzaList: Data[] } = resp.data;
+  return {
+    props: {
+      pizzaList: resp.data,
+    }
+  }
 }
