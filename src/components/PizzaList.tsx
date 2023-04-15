@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import PizzaCard from './PizzaCard';
 import styles from '@/styles/PizzaList.module.css';
 
 
-export default function PizzaList({ pizzaList }) {
+
+ function mapProduct(pizzaList: ProductBase[]): ReactNode {
+  return pizzaList.map((pizza) => (
+     <PizzaCard pizza={pizza} key={pizza.title} />
+   ));
+ }
+
+export default function PizzaList({ pizzaList }: PizzaList) {
   return (
     <div className={styles.container}>
         <h1 className={styles.title}>THE BEST PIZZA IN TOWN</h1>
@@ -11,10 +18,7 @@ export default function PizzaList({ pizzaList }) {
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquam corporis dolor, eligendi harum sint corrupti cupiditate natus incidunt, fugiat assumenda excepturi consequatur illo vitae, inventore quod. Aliquid magnam vitae nam.
         </p>
         <div className={styles.wrapper}>
-          {pizzaList.map((pizza, index: number) => (
-            <PizzaCard pizza={pizza} key={index+ 1}/>
-          ))}
-         
+          {mapProduct(pizzaList)}
         </div>
     </div>
   )

@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 export default function Footer() {
   return (
-    <div className={styles.container}>
+    <footer className={styles.container}>
       <div className={styles.item}>
         <Image src='/img/bg.png' fill style={{ objectFit: 'cover' }} alt='background_image'/>
       </div>
@@ -49,6 +49,6 @@ export default function Footer() {
           </p>
         </div>
       </div>
-    </div>
+    </footer>
   )
 }

@@ -43,6 +43,7 @@
     flex-direction: column;
     justify-content: space-between;
     color: white;
+    margin: 20px auto;
   }
   
   .totalTextTitle {
@@ -57,7 +58,13 @@
     margin-top: 20px;
   }
   
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 900px) {
+    .container {
+      flex-wrap: wrap;
+      padding: 20px;
+    }
+  }
+  @media screen and (max-width: 600px) {
     .container {
       flex-direction: column;
       padding: 20px;

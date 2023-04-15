@@ -1,26 +1,10 @@
 import Head from 'next/head';
-// import { Inter } from 'next/font/google'
-import { NextApiRequest, NextApiResponse } from "next";
 import styles from '@/styles/Home.module.css';
 import Featured from '@/components/Featured';
 import PizzaList from '@/components/PizzaList';
-import axios from 'axios';
 
-// const inter = Inter({ subsets: ['latin'] })
 
-type Data = {
-  _id: string,
-  title: string,
-  desc: string,
-  img: string,
-  prices: [number],
-  extraOptions: [string | number],
-  createdAt: string,
-  updatedAt: string,
-  __v: number
-}
-
-export default function Home({ pizzaList }) {
+export default function Home({ pizzaList }: { pizzaList: ProductBase[]}) {
   return (
     <div className={styles.container}>
       <Head>
@@ -37,12 +21,15 @@ export default function Home({ pizzaList }) {
 }
 
 
-export async function getServerSideProps(req:NextApiRequest, res:NextApiResponse) {
-  const resp = await axios.get("http://localhost:3000/api/products");
+export async function getServerSideProps() {
+  const resp = await fetch("http://localhost:3000/api/products");
   // const { pizzaList: Data[] } = resp.data;
+  const data = await resp.json();
+  console.log(data, 'server')
+ 
   return {
     props: {
-      pizzaList: resp.data,
+      pizzaList: data,
     }
   }
 }

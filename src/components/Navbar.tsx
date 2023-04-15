@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 export default function Navbar() {
   return (
-    <div className={styles.container}>
+    <header className={styles.container}>
         <div className={styles.item}>
           <div className={styles.callButton}>
              <Image src='/img/telephone.png' alt='telephone_logo' width={32} height={32}/>
@@ -31,6 +31,6 @@ export default function Navbar() {
             <div className={styles.counter}>2</div>
           </div>
         </div>
-    </div>
+    </header>
   );
 }
