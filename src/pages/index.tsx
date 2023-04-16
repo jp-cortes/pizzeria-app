@@ -2,6 +2,7 @@ import Head from 'next/head';
 import styles from '@/styles/Home.module.css';
 import Featured from '@/components/Featured';
 import PizzaList from '@/components/PizzaList';
+import axios from 'axios';
 
 
 export default function Home({ pizzaList }: { pizzaList: ProductBase[]}) {
@@ -22,14 +23,13 @@ export default function Home({ pizzaList }: { pizzaList: ProductBase[]}) {
 
 
 export async function getServerSideProps() {
-  const resp = await fetch("http://localhost:3000/api/products");
-  // const { pizzaList: Data[] } = resp.data;
-  const data = await resp.json();
-  console.log(data, 'server')
+  const resp = await axios.get("http://localhost:3000/api/products");
+  
+  console.log(resp, 'server')
  
   return {
     props: {
-      pizzaList: data,
+      pizzaList: resp.data,
     }
   }
 }
