@@ -1,8 +1,16 @@
-import mongoose from "mongoose";
+import { Schema, model, models } from "mongoose";
+
+interface Order {
+  customer: string;
+  address: string;
+  total: number;
+  status: number;
+  method: number;
+
+}
 
 
-
-const OrderSchema = new mongoose.Schema(
+const OrderSchema = new Schema<Order>(
   {
     customer: {
       type: String,
@@ -31,5 +39,5 @@ const OrderSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.models.Order ||
-  mongoose.model("Product", OrderSchema);
+export default models.Order ||
+  model("Product", OrderSchema);

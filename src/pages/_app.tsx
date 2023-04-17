@@ -1,6 +1,8 @@
 import type { AppProps } from 'next/app';
 import { Grandstander } from 'next/font/google'
 import Layout from '@/components/Layout';
+import store from '@/redux/store';
+import { Provider } from 'react-redux';
 import '@/styles/globals.css';
 
 const grandStander = Grandstander({ 
@@ -11,10 +13,10 @@ const grandStander = Grandstander({
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
+    <Provider store={store}>
       <Layout>
-        <main className={grandStander.className}>
           <Component {...pageProps} />
-        </main>
       </Layout>
+    </Provider>
   );
 }
