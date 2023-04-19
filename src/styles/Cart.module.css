@@ -34,20 +34,20 @@
   }
   
   .wrapper {
-    width: 90%;
+    width: auto;
     max-height: 300px;
     background-color: #333333;
-    padding: 50px;
-    padding-top: 20px;
+    padding: 30px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     color: white;
     margin: 20px auto;
+    text-align: center;
   }
   
   .totalTextTitle {
-    margin-right: 10px;
+    margin-bottom: 10px;
   }
   
   .button {
@@ -57,16 +57,36 @@
     cursor: pointer;
     margin-top: 20px;
   }
+
+  .paymentMethods {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+    margin: 2px auto;
+  }
+
+  .payButton {
+    width: 100%;
+    padding: 10px 5px;
+    cursor: pointer;
+    margin-bottom: 8px;
+
+    background: var(--color-white);
+    color: teal;
+    font-weight: bold;
+  }
   
   @media screen and (max-width: 900px) {
     .container {
-      flex-wrap: wrap;
+      /* can be flex wrap*/
+      flex-direction: column;
       padding: 20px;
     }
   }
   @media screen and (max-width: 600px) {
     .container {
-      flex-direction: column;
+      
       padding: 20px;
     }
   
