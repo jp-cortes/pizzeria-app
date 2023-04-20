@@ -2,49 +2,45 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useDispatch, useSelector } from 'react-redux';
 import {  PayPalScriptProvider, PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
-
-
+import { useRouter } from 'next/router';
+import { reset } from '@/redux/cartSlice';
+import { OrderDetail } from '@/components/OrderDetail';
+import axios from 'axios';
 import styles from '@/styles/Cart.module.css';
 
- interface ProductCart {
-  _id: string; 
-  img: string; 
-  title: string; 
-  price: number; 
-  quantity: number;
-   extras: [
-     {
-      text: string; 
-      _id: string
-    }
-  ]
 
-};
-
-type RootState = {
-  cart: {
-    quantity: number;
-    total: number;
-    products: ProductCart[];
-  };
-};
+ 
 
 export default function Cart() {
-  //states
-  const [open, setOpen] = useState(false)
+  const cart = useSelector((state: RootState) => state.cart);
+  // console.log('cart', cart);
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const [open, setOpen] = useState(false);
+  const [cash, setCash] = useState(false);
+
   //paypal
   // This values are the props in the UI
-const amount = "2";
-const currency = "USD";
+const amount = `${cart.total}`;
+const currency = "EUR";
 const style = {"layout":"vertical"};
 
-const cart = useSelector((state: RootState) => state.cart);
-const dispatch = useDispatch();
- console.log('cart', cart)
+async function createOrder(data: Partial<ProductOrder>) {
+  try {
+    const res = await axios.post('http://localhost:3000/api/orders', data);
+    if(res.status === 201) {
+      dispatch(reset());
+      router.push(`/orders/${res.data._id}`);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+
+}
 
 
 // Custom component to wrap the PayPalButtons and handle currency changes
-const ButtonWrapper = ({ currency, showSpinner }) => {
+const ButtonWrapper = ({ currency, showSpinner }: PaypalButton) => {
   // usePayPalScriptReducer can be use only inside children of PayPalScriptProviders
   // This is the main reason to wrap the PayPalButtons in a new component
   const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
@@ -86,8 +82,14 @@ const ButtonWrapper = ({ currency, showSpinner }) => {
               }}
               onApprove={function (data, actions) {
                   return actions.order?.capture().then(function (details) {
-                    console.log(details)
-                      // Your code here after capture the order
+                    const shipping = details.purchase_units[0].shipping;
+                    createOrder({
+                      customer: shipping?.name?.full_name,
+                      address: shipping?.address?.address_line_1,
+                      total: cart.total,
+                      method: 1,
+                    })
+          
                   });
               }}
           />
@@ -95,7 +97,7 @@ const ButtonWrapper = ({ currency, showSpinner }) => {
   );
 }
 
-
+// console.log(open)
 
   return (
     <div className={styles.container}>
@@ -114,7 +116,7 @@ const ButtonWrapper = ({ currency, showSpinner }) => {
         <tbody>
 
         {cart.products.map((product: ProductCart) => (
-          <tr className={styles.tr} key={product._id}>
+          <tr className={styles.tr} key={`productID-${product.createdAt}`}>
           <td>
             <div className={styles.imgContainer}>
               <Image
@@ -131,18 +133,18 @@ const ButtonWrapper = ({ currency, showSpinner }) => {
           <td>
             <span className={styles.extras}>
               {product.extras.map((extra) => (
-                <span key={product._id}>{extra.text}, </span>
+                <span key={extra._id}>{extra.text}, </span>
               ))}
             </span>
           </td>
           <td>
-            <span className={styles.price}>${product.price}</span>
+            <span className={styles.price}>€{product.price}</span>
           </td>
           <td>
             <span className={styles.quantity}>{product.quantity}</span>
           </td>
           <td>
-            <span className={styles.total}>${product.price * product.quantity}</span>
+            <span className={styles.total}>€{product.price * product.quantity}</span>
           </td>
         </tr>
         ))}
@@ -155,17 +157,20 @@ const ButtonWrapper = ({ currency, showSpinner }) => {
       <div className={styles.wrapper}>
         <h2 className={styles.title}>CART TOTAL</h2>
         <div className={styles.totalText}>
-          <b className={styles.totalTextTitle}>Subtotal:</b>${cart.total}
+          <b className={styles.totalTextTitle}>Subtotal: </b>€{' '}{cart.total}
         </div>
         <div className={styles.totalText}>
-          <b className={styles.totalTextTitle}>Discount:</b>$0.00
+          <b className={styles.totalTextTitle}>Discount: </b>€ 0.00
         </div>
         <div className={styles.totalText}>
-          <b className={styles.totalTextTitle}>Total:</b>${cart.total}
+          <b className={styles.totalTextTitle}>Total: </b>€{' '}{cart.total}
         </div>
         {open ? (
           <div className={styles.paymentMethods}>
-            <button className={styles.payButton}> CASH ON DELIVERY</button>
+            <button 
+            onClick={() => setCash(true)}
+            className={styles.payButton}
+            > CASH ON DELIVERY</button>
 
         <PayPalScriptProvider
                 options={{
@@ -188,6 +193,7 @@ const ButtonWrapper = ({ currency, showSpinner }) => {
 
       </div>
     </div>
+    {cash && <OrderDetail total={cart.total} createOrder={createOrder}  setCash={setCash}/>}
   </div>
   )
 }

@@ -1,9 +1,10 @@
 import React from 'react';
-import styles from '@/styles/Orders.module.css';
 import Image from 'next/image';
+import axios from 'axios';
+import styles from '@/styles/Orders.module.css';
 
-export default function Orders() {
-const status = 0;
+export default function Orders({ order }: { order : ProductOrder }) {
+const status = order.status;
 
 function StatusClass(index: number) {
     if(index - status < 1) return styles.done;
@@ -27,16 +28,16 @@ function StatusClass(index: number) {
                   <tbody>
                      <tr className={styles.tr}>
                         <td>
-                            <span className={styles.id}>132164879465431</span>
+                            <span className={styles.id}>{order._id}</span>
                         </td>
                         <td>
-                            <span className={styles.name}>Jhonny Cage</span>
+                            <span className={styles.name}>{order.customer}</span>
                         </td>
                         <td>
-                            <span className={styles.address}>Elton st. 121-33 LA</span>
+                            <span className={styles.address}>{order.address}</span>
                         </td>
                         <td>
-                            <span className={styles.total}>$79.80</span>
+                            <span className={styles.total}>€{order.total}</span>
                         </td>
                       </tr>
                   </tbody>
@@ -58,7 +59,7 @@ function StatusClass(index: number) {
                 </div>
                 <div className={StatusClass(1)}>
                     <Image src='/img/bake.png' width={30} height={30} alt=''/>
-                    <span>Baked</span>
+                    <span>Preparing</span>
                     <div className={styles.checkedIcon}>
                         <Image
                         className={styles.checkedIcon}
@@ -101,13 +102,13 @@ function StatusClass(index: number) {
             <div className={styles.wrapper}>
                 <h2 className={styles.title}>CART TOTAL</h2>
                 <div className={styles.totalText}>
-                    <b className={styles.totalTextTitle}>Subtotal:</b>$79.60
+                    <b className={styles.totalTextTitle}>Subtotal:</b>€{' '}{order.total}
                 </div>
                 <div className={styles.totalText}>
-                    <b className={styles.totalTextTitle}>Discount:</b>$0.00
+                    <b className={styles.totalTextTitle}>Discount:</b>€0.00
                 </div>
                 <div className={styles.totalText}>
-                    <b className={styles.totalTextTitle}>Total:</b>$79.60
+                    <b className={styles.totalTextTitle}>Total:</b>€{order.total}
                 </div>
                 <button disabled className={styles.button}>PAID</button>
             </div>
@@ -115,3 +116,15 @@ function StatusClass(index: number) {
     </div>
   );
 }
+
+export async function getServerSideProps({ params }: { params : Partial<ProductOrder> }) {
+    const resp = await axios.get(`http://localhost:3000/api/orders/${params.id}`);
+    
+    // console.log(resp, 'server');
+   
+    return {
+      props: {
+        order: resp.data,
+      }
+    }
+  }

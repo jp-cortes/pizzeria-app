@@ -39,5 +39,5 @@ const OrderSchema = new Schema<Order>(
   { timestamps: true }
 );
 
-export default models.Order ||
-  model("Product", OrderSchema);
+export default models.Orders ||
+  model("Orders", OrderSchema);

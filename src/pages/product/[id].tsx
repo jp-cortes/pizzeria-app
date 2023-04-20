@@ -38,13 +38,12 @@ setExtras([...extras, option]);
     }
 }
 function handleInputChange (event: React.ChangeEvent<HTMLInputElement>) {
-    console.log(quantity)
+    // console.log(quantity)
  setQuantity(parseInt(event.target.value, 10))
 }
 
 function handleClick() {
-    setQuantity(quantity )
-dispatch(addProduct({...pizza, extras, price, quantity: quantity }))
+dispatch(addProduct({...pizza, extras, price, quantity }))
 }
 
   return (
@@ -57,7 +56,7 @@ dispatch(addProduct({...pizza, extras, price, quantity: quantity }))
         <div className={styles.right}>
             <h1 className={styles.title}>{pizza.title}</h1>
 
-            <span className={styles.price}>${price}</span>
+            <span className={styles.price}>€{price}</span>
             <p className={styles.desc}>{pizza.desc}</p>
             <h3 className={styles.choose}>Choose the size</h3>
             <div className={styles.sizes}>
@@ -111,7 +110,7 @@ dispatch(addProduct({...pizza, extras, price, quantity: quantity }))
 export async function getServerSideProps({ params } :{ params : ProductBase }) {
     const resp = await axios.get(`http://localhost:3000/api/products/${params.id}`);
 
-    console.log(resp, 'server')
+    // console.log(resp, 'server')
    
     return {
       props: {

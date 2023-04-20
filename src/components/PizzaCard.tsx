@@ -12,7 +12,7 @@ export default function PizzaCard({ pizza }: PizzaCard) {
       <Image src={pizza.img} alt={pizza.title} width={250} height={250} />
       </Link>
       <h2 className={styles.title}>{pizza.title}</h2>
-      <span className={styles.price}>${pizza.prices[0]}</span>
+      <span className={styles.price}>€{pizza.prices[0]}</span>
       <p className={styles.desc}>
         {pizza.desc}
       </p>

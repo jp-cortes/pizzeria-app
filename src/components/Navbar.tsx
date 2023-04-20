@@ -54,14 +54,19 @@ export default function Navbar() {
         </div>
         <div className={styles.item}>
           <ul className={styles.list}>
-            
+            <Link href='/'>
             <li className={styles.listItem}>Homepage</li>
+            </Link>
             <li className={styles.listItem}>Menu</li>
+            <Link href='/products'>
             <li className={styles.listItem}>Products</li>
+            </Link>
             <Image src='' alt='logo' width={160} height={69}/>
             <li className={styles.listItem}>Events</li>
             <li className={styles.listItem}>Blog</li>
+            <Link href='#footer'>
             <li className={styles.listItem}>Contact</li>
+            </Link>
           </ul>
         </div>
         <div className={styles.item}>

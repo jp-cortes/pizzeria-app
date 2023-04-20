@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 export default function Footer() {
   return (
-    <footer className={styles.container}>
+    <footer className={styles.container} id='footer'>
       <div className={styles.item}>
         <Image src='/img/bg.png' fill style={{ objectFit: 'cover' }} alt='background_image'/>
       </div>
