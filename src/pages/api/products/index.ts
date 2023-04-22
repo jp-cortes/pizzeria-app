@@ -25,8 +25,8 @@ export default async function handler(
 
   if(method === 'GET') {
     try {
-        const product: Data[] = await Product.find();
-      res.status(200).json(product);  
+        const products: Data[] = await Product.find();
+      res.status(200).json(products);  
     } catch (error: unknown) {
         res.status(500).json(error);
     }

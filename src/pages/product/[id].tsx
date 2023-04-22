@@ -110,7 +110,7 @@ dispatch(addProduct({...pizza, extras, price, quantity }))
 export async function getServerSideProps({ params } :{ params : ProductBase }) {
     const resp = await axios.get(`http://localhost:3000/api/products/${params.id}`);
 
-    // console.log(resp, 'server')
+    console.log(resp, 'server')
    
     return {
       props: {
