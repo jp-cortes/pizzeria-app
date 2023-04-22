@@ -9,7 +9,7 @@ import axios from 'axios';
 import styles from '@/styles/Cart.module.css';
 
 
- 
+ const PAYPAL_CLIENT_ID = process.env.PAYPAY_CLIENT_ID as string;
 
 export default function Cart() {
   const cart = useSelector((state: RootState) => state.cart);
@@ -174,7 +174,7 @@ const ButtonWrapper = ({ currency, showSpinner }: PaypalButton) => {
 
         <PayPalScriptProvider
                 options={{
-                    "client-id": "AYdHi4ACCvLOoon0eLJie42FGPobcWemKvL6flr8HG-4goeWvQYZK6s-icQ50lfA16jeBRK6qsigNiLA",
+                    "client-id": PAYPAL_CLIENT_ID,
                     components: "buttons",
                     currency: "USD",
                     "disable-funding": "credit,card,p24"
