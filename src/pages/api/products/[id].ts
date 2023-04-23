@@ -37,7 +37,9 @@ export default async function handler(
   }
   if(method === 'PUT') {
     try {
-        const product = await Product.create(req.body);
+        const product = await Product.findByIdAndUpdate(req.body, {
+          new: true
+        });
         res.status(201).json(product);
     } catch (error: unknown) {
         res.status(500).json(error);
@@ -46,8 +48,8 @@ export default async function handler(
 
   if(method === 'DELETE') {
     try {
-        const product = await Product.create(req.body);
-        res.status(201).json(product);
+        const product = await Product.findByIdAndDelete(req.body);
+        res.status(200).json("Product Deleted");
     } catch (error: unknown) {
         res.status(500).json(error);
     }
