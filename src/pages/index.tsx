@@ -1,11 +1,17 @@
 import Head from 'next/head';
-import styles from '@/styles/Home.module.css';
 import Featured from '@/components/Featured';
 import PizzaList from '@/components/PizzaList';
 import axios from 'axios';
+import { NextApiRequest } from 'next';
+import { useState } from 'react';
+import AddButton from '@/components/AddButton';
+import { AddProduct } from '@/components/AddProduct';
+import styles from '@/styles/Home.module.css';
 
 
-export default function Home({ pizzaList }: { pizzaList: ProductBase[]}) {
+export default function Home({ pizzaList }: { pizzaList: ProductBase[], admin: boolean}) {
+const [close, setClose] = useState(true);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -16,16 +22,32 @@ export default function Home({ pizzaList }: { pizzaList: ProductBase[]}) {
       </Head>
      
       <Featured/>
+      {<AddButton setClose={setClose}/>}
       <PizzaList pizzaList={pizzaList}/>
+      {!close && <AddProduct setClose={setClose}/>}
     </div>
   )
 }
 
 
-export async function getServerSideProps() {
+
+type Ctx = {
+req: NextApiRequest;
+}
+
+export async function getServerSideProps(ctx: Ctx) {
+  const myCookie = ctx.req?.cookies || "";
+  let admin = false;
+
+
+  if(myCookie.token === process.env.TOKEN) {
+
+    admin = true
+  }
+
   const resp = await axios.get("http://localhost:3000/api/products");
   
-  console.log(resp, 'server')
+  // console.log(ctx, 'server')
  
   return {
     props: {

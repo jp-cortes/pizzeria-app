@@ -11,6 +11,7 @@ type DasboardProps = {
 export default function Dashboard({ orders, products }: DasboardProps) {
   const [pizzaList, setPizzaList] = useState(products);
   const [orderList, setOrderList] = useState(orders);
+  const [delivered, setDelivered] = useState(false);
   const status = ["preparing", "on the way", "delivered"];
 
    async function handleDelete(id:string | number) {
@@ -26,7 +27,10 @@ export default function Dashboard({ orders, products }: DasboardProps) {
    async function handleStatus(id: string | number) {
     const item = orderList.filter((order) => order._id === id)[0];
     const currentStatus = item.status;
-    if(currentStatus === 2) return
+    if(currentStatus === 2) {
+      setDelivered(true)
+      return;
+    }
     try {
       const resp = await axios.put(`http://localhost:3000/api/orders/${id}`, { status: currentStatus + 1,
     });
@@ -40,8 +44,15 @@ export default function Dashboard({ orders, products }: DasboardProps) {
       
     }
    }
+
+   function handlelogout() {
+
+   }
   return (
     <div className={styles.container}>
+      <button 
+      className={styles.logout}
+      onClick={handlelogout}>Log out</button>
       <div className={styles.item}>
         <h2 className={styles.title}>Products</h2>
         <table className={styles.table}>
@@ -98,7 +109,7 @@ export default function Dashboard({ orders, products }: DasboardProps) {
               </thead>
               {orderList?.map((order) => (
                 <tbody 
-                className={styles.body}
+                className={styles.tbody}
                 key={order._id}>
                   <tr className={styles.trTitle}>
                     <td>{order._id.slice(0, 5)}...</td>

@@ -1,6 +1,19 @@
 .container {
+    position: relative;
     padding: 50px;
     display: flex;
+}
+
+.logout {
+    position: absolute;
+    right: 20px;
+    background-color: crimson;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    color: var(--color-white);
 }
 
 .item {
@@ -13,12 +26,17 @@
     text-align: left;
 }
 
+.nextStage:focus {
+    background-color: rgba(23, 87, 87, 0.402);
+}
 
 .button {
     border: none;
     color: var(--color-white);
     padding: 5px;
     cursor: pointer;
+    border-radius: 8px;
+    font-weight: bold;
 }
 
 .button:first-child {
@@ -38,6 +56,7 @@
     border: none;
     border-radius: 4px;
     font-weight: bold;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 920px) {
