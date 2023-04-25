@@ -4,12 +4,14 @@ import axios from 'axios';
 import styles from  '@/styles/Login.module.css';
 
 export default function Login() {
+    
 const [username, setUsername] = useState<string | null>(null);
 const [password, setPassword] = useState<string | null>(null);
 const [error, setError] = useState(false);
 const router = useRouter();
 
-async function handleCLick() {
+async function handleCLick(e: { preventDefault: () => void; }) {
+    e.preventDefault();
     try {
         await axios.post("http://localhost:3000/api/login", {
             username, 
@@ -32,6 +34,8 @@ function resetInputs() {
     <div className={styles.container}>
         <div className={styles.wrapper}>
             <h1 className={styles.title}>Admin Dashboard</h1>
+            <form className={styles.form}
+            onSubmit={handleCLick}>
             <input
             placeholder='Username'
             className={error ? styles.inputError :styles.login}
@@ -50,11 +54,12 @@ function resetInputs() {
             }}
             />
             <button 
-            onClick={handleCLick}
+            
             className={error ? styles.buttonError :styles.button}
             >
                 Sign In
             </button>
+            </form>
             {error && <span className={styles.error}>Wrong Credentials!</span>}
         </div>
     </div>

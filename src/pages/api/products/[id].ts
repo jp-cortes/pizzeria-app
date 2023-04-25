@@ -48,7 +48,7 @@ export default async function handler(
 
   if(method === 'DELETE') {
     try {
-        const product = await Product.findByIdAndDelete(req.body);
+         await Product.findByIdAndDelete(id);
         res.status(200).json("Product Deleted");
     } catch (error: unknown) {
         res.status(500).json(error);

@@ -9,6 +9,10 @@
     display: flex;
     flex-direction: column;
 }
+.form {
+    display: flex;
+    flex-direction: column;
+}
 .title {
     margin-bottom: 30px;
 }

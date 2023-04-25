@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
-import styles from '@/styles/Dashboard.module.css'
+import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 import axios from 'axios';
 import Image from 'next/image';
+import styles from '@/styles/Dashboard.module.css';
+import { cookies } from 'next/dist/client/components/headers';
 
 type DasboardProps = {
   orders: ProductOrder[];
@@ -13,6 +15,7 @@ export default function Dashboard({ orders, products }: DasboardProps) {
   const [orderList, setOrderList] = useState(orders);
   const [delivered, setDelivered] = useState(false);
   const status = ["preparing", "on the way", "delivered"];
+  const router = useRouter();
 
    async function handleDelete(id:string | number) {
     console.log(id);
@@ -45,14 +48,34 @@ export default function Dashboard({ orders, products }: DasboardProps) {
     }
    }
 
+   async function updateProduct(id: string) {
+    try {
+      const resp = await axios.get(`http://localhost:3000/api/products/${id}`)
+      console.log(resp.data)
+    } catch(error) {
+      console.log(error)
+    }
+   }
+
    function handlelogout() {
+   
+      let allCookies = document.cookie.split('%');
+      
+  
+      // The "expire" attribute of every cookie is 
+      // Set to "Thu, 01 Jan 1970 00:00:00 GMT"
+      // for (let i = 0; i < allCookies.length; i++){
+      // }
+      // allCookies[0] + "=;expires=" + new Date(0).toUTCString();
+      console.log(allCookies)
+      
 
    }
   return (
     <div className={styles.container}>
       <button 
       className={styles.logout}
-      onClick={handlelogout}>Log out</button>
+      onClick={() => handlelogout()}>Log out</button>
       <div className={styles.item}>
         <h2 className={styles.title}>Products</h2>
         <table className={styles.table}>
@@ -81,7 +104,9 @@ export default function Dashboard({ orders, products }: DasboardProps) {
                 <td>{product.title}</td>
                 <td>{product.prices[0]}</td>
                 <td>
-                  <button className={styles.button}>Edit</button>
+                  <button 
+                  onClick={() => updateProduct(product._id)}
+                  className={styles.button}>Edit</button>
                   <button 
                     onClick={() => handleDelete(product._id)}
                     className={styles.button}
@@ -137,7 +162,19 @@ export default function Dashboard({ orders, products }: DasboardProps) {
 }
 
 
-export async function getServerSideProps() {
+export async function getServerSideProps(ctx: Ctx) {
+const myCookie = ctx.req?.cookies || "";
+
+if(myCookie.token !== process.env.TOKEN) {
+  return {
+    redirect: {
+      destination: "/dashboard/login",
+      permanent: false,
+    }
+  }
+}
+
+
   const productResp = await axios.get("http://localhost:3000/api/products");
   const orderResp = await axios.get("http://localhost:3000/api/orders");
 

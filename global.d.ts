@@ -73,4 +73,8 @@ type PizzaProduct = {
     total: number;
     method: number;
   };
+
+  type Ctx = {
+    req: NextApiRequest;
+    };
 }

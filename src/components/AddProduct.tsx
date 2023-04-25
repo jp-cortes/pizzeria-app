@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import styles from ' @/styles/AddProduct.module.css';
+import styles from '@/styles/AddProduct.module.css';
 
 type Props = {
     setClose: Function;
@@ -13,7 +13,7 @@ export function AddProduct({ setClose }: Props) {
   const [desc, setDesc] = useState<string | null>(null);
   const [prices, setPrices] = useState<number[]| string[]>([]);
   const [extraOptions, setExtraOptions] = useState([]);
-  const [extra, setExtra] = useState<string | null>(null);
+  const [extra, setExtra] = useState<object | null>(null);
 
   function changePrice(e: unknown | null, index: number) {
     const currentPrices = prices;
@@ -30,15 +30,15 @@ function handleExtra() {
   setExtraOptions((prev) => [...prev, extra]);
 }
 
-async function handleCreate() {
-
+async function handleCreate(e) {
+e.preventDefault();
   const data = new FormData();
   data.append("file", file);
   data.append("upload_preset", "uploads");
 
 
   try {
-    const uploadRes = await axios.post("",
+    const uploadRes = await axios.post(`${process.env.NEXT_URL_CLOUDINARY}`,
     data
     );
     const { url } = uploadRes.data;
@@ -59,7 +59,9 @@ async function handleCreate() {
   return (
     <div className={styles.container}>
 
-      <div className={styles.wrapper}>
+      <form 
+       onSubmit={handleCreate}
+      className={styles.wrapper}>
         <span onClick={() => setClose(true)} className={styles.close}>
           X
           </span>
@@ -137,11 +139,11 @@ async function handleCreate() {
             ))}
           </div>
           <button 
-          onClick={handleCreate}
+         
           className={styles.addButton}>
             Create
           </button>
-      </div>
+      </form>
 
     </div>
   )

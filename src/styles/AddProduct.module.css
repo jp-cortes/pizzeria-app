@@ -17,7 +17,7 @@
     padding: 10px 50px;
     border-radius:20px;
     display: flex;
-    flex-direction: center;
+    flex-direction: column;
     justify-content:center;
     position: relative;
 }
@@ -25,7 +25,7 @@
 .close {
     width: 30px;
     height: 30px;
-    background-color: var(--very-dark-grey);
+    background-color: var(--very-dark-gray);
     color: var(--color-white);
     border-radius: 50%;
     display: flex;

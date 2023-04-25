@@ -31,9 +31,7 @@ const [close, setClose] = useState(true);
 
 
 
-type Ctx = {
-req: NextApiRequest;
-}
+
 
 export async function getServerSideProps(ctx: Ctx) {
   const myCookie = ctx.req?.cookies || "";
@@ -42,7 +40,7 @@ export async function getServerSideProps(ctx: Ctx) {
 
   if(myCookie.token === process.env.TOKEN) {
 
-    admin = true
+    admin = true;
   }
 
   const resp = await axios.get("http://localhost:3000/api/products");
