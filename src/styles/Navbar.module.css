@@ -9,7 +9,14 @@
     top: 0;
     z-index: 99;
 }
+   
 
+.contact {
+ 
+    display: flex;
+    align-items: center;
+    
+}
 .item {
     flex: 1;
     display: flex;
@@ -76,7 +83,22 @@
     color: var(--primary-color);
 }
 
+.menuMobileButton{
+    display: none;
+}
+.containerMobile{
+    list-style: none;
+}
+
 @media screen and (max-width:920px) {
+    .container {
+        padding: 0px 20px;
+    }
+
+    .contact {
+        flex: 4;
+    }
+
     .item:nth-child(2) {
         display: none;
     }
@@ -84,4 +106,16 @@
     .item:nth-child(1) {
         flex: 3;
     }
+    .logo {
+        display: none;
+      }
+      .menuMobileButton {
+        background-color: transparent;
+        border: none;
+        display: block;
+        width: 60px;
+      }
+}
+@media screen and (max-width:600px) {
+ 
 }

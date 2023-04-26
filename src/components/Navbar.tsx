@@ -1,35 +1,11 @@
-import React from 'react';
-import styles from '@/styles/Navbar.module.css';
-import Image from 'next/image';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { MenuMobile } from './MenuMobile';
+import Image from 'next/image';
 import Link from 'next/link';
+import styles from '@/styles/Navbar.module.css';
 
-const links = [
-  {
-    id: 'homepage',
-    name: 'Homepage'
-  },
-  {
-    id: 'menu',
-    name: 'Menu'
-  },
-  {
-    id: 'products',
-    name: 'Products'
-  },
-  {
-    id: 'events',
-    name: 'Events'
-  },
-  {
-    id: 'blog',
-    name: 'Blog'
-  },
-  {
-    id: 'contact',
-    name: 'Contact'
-  },
-]
+
 
 type RootState = {
   cart: {
@@ -38,20 +14,27 @@ type RootState = {
 };
 
 export default function Navbar() {
+  const [menuVisibility, setMenuVisibility] = useState(false);
   const quantity = useSelector((state: RootState) => state.cart.quantity);
   
+ function handleVisivility() {
+  setMenuVisibility(prev => !prev);
+ }
   
   return (
     <header className={styles.container}>
         <div className={styles.item}>
-          <div className={styles.callButton}>
-             <Image src='/img/telephone.png' alt='telephone_logo' width={32} height={32}/>
-           </div>
-          <div className={styles.texts}>
-             <p className={styles.text}>ORDER NOW!</p>
-             <p className={styles.text}>0123 456 789</p>
-           </div>
+          <button className={styles.menuMobileButton}
+          onClick={handleVisivility}
+          >
+            <Image src='' alt='menu_mobile' width={50} height={50}/>
+          </button>
+          {menuVisibility && <MenuMobile/>}
+            <Image
+            className={styles.logo}
+            src='/img/logo.png' alt='logo' width={100} height={90}/>
         </div>
+       
         <div className={styles.item}>
           <ul className={styles.list}>
             <Link href='/'>
@@ -61,13 +44,20 @@ export default function Navbar() {
             <Link href='/products'>
             <li className={styles.listItem}>Products</li>
             </Link>
-            <Image src='' alt='logo' width={160} height={69}/>
-            <li className={styles.listItem}>Events</li>
-            <li className={styles.listItem}>Blog</li>
+            
             <Link href='#footer'>
             <li className={styles.listItem}>Contact</li>
             </Link>
           </ul>
+        </div>
+        <div className={styles.contact}>
+        <div className={styles.callButton}>
+             <Image src='/img/telephone.png' alt='telephone_logo' width={32} height={32}/>
+           </div>
+          <div className={styles.texts}>
+             <p className={styles.text}>ORDER NOW!</p>
+             <p className={styles.text}>0123 456 789</p>
+           </div>
         </div>
         <div className={styles.item}>
           <div className={styles.cart}>

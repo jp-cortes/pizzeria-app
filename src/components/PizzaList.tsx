@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import PizzaCard from './PizzaCard';
+import { PizzaCard } from './PizzaCard';
 import styles from '@/styles/PizzaList.module.css';
 
 
@@ -10,7 +10,7 @@ import styles from '@/styles/PizzaList.module.css';
    ));
  }
 
-export default function PizzaList({ pizzaList }: PizzaList) {
+export  function PizzaList({ pizzaList }: PizzaList) {
   return (
     <div className={styles.container} id='products'>
         <h1 className={styles.title}>THE BEST PIZZA IN TOWN</h1>

@@ -15,7 +15,7 @@ export function AddProduct({ setClose }: Props) {
   const [extraOptions, setExtraOptions] = useState([]);
   const [extra, setExtra] = useState<object | null>(null);
 
-  function changePrice(e: unknown | null, index: number) {
+  function changePrice(e) {
     const currentPrices = prices;
     currentPrices[index] = e.target.value;
     setPrices(currentPrices);
@@ -30,8 +30,8 @@ function handleExtra() {
   setExtraOptions((prev) => [...prev, extra]);
 }
 
-async function handleCreate(e) {
-e.preventDefault();
+async function handleCreate(e: { preventDefault: () => void; }) {
+// e.preventDefault();
   const data = new FormData();
   data.append("file", file);
   data.append("upload_preset", "uploads");
@@ -68,7 +68,7 @@ e.preventDefault();
           <h2>Add New Pizza</h2>
           <div className={styles.item}>
             <label className={styles.label}>Choose an image</label>
-            <input type='file' onChange={(e) => setFile(e.target.files[0])}/>
+            <input type='file' onChange={(e) =>  setFile(e.target.files[0])}/>
           </div>
           <div className={styles.item}>
             <label className={styles.label}>Title</label>
@@ -82,7 +82,6 @@ e.preventDefault();
             <label className={styles.label}>Description</label>
             <textarea
             rows={4}
-            // type='text'
             onChange={(e) => setDesc(e.target.value)}
             />
           </div>
@@ -93,24 +92,27 @@ e.preventDefault();
             <input
             className={`${styles.input} ${styles.inputSm}`}
             type='number'
+            min={1}
             placeholder='Small'
             onChange={(e) => changePrice(e, 0)}
             />
             <input
             className={`${styles.input} ${styles.inputSm}`}
             type='number'
+            min={1}
             placeholder='Medium'
             onChange={(e) => changePrice(e, 1)}
             />
             <input
             className={`${styles.input} ${styles.inputSm}`}
             type='number'
+            min={1}
             placeholder='Large'
             onChange={(e) => changePrice(e, 2)}
             />
             </div>
           </div>
-          <div className={styles.item}>
+          <div className={styles.extra}>
             <label className={styles.label}>Extra</label>
             <input
             className={`${styles.input} ${styles.inputSm}`}
@@ -122,6 +124,7 @@ e.preventDefault();
             <input
             className={`${styles.input} ${styles.inputSm}`}
             type='number'
+            min={1}
             placeholder='Item'
             name='price'
             onChange={handleExtraInput}

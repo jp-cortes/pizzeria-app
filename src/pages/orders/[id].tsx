@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import axios from 'axios';
 import styles from '@/styles/Orders.module.css';
+import { Layout } from '@/components/Layout';
 
 export default function Orders({ order }: { order : ProductOrder }) {
 const status = order.status;
@@ -13,7 +14,8 @@ function StatusClass(index: number) {
 }
 
   return (
-    <div className={styles.container}>
+   <Layout>
+     <div className={styles.container}>
         <div className={styles.left}>
             <div className={styles.row}>
                 <table className={styles.table}>
@@ -114,6 +116,7 @@ function StatusClass(index: number) {
             </div>
         </div>
     </div>
+   </Layout>
   );
 }
 

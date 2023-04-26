@@ -32,15 +32,24 @@
 .promotion {
     position: absolute;
     bottom: 0;
-    left: 10%;
+    right: 10%;
     z-index: 2;
     font-size: 90px;
     color: whitesmoke;
 
 }
 
+@media screen and (max-width: 600px) {
+    .promotion {
+        font-size: 50px;
+    }
+}
 @media screen and (max-width:480px) {
     .container {
         height: 50vh;
     }    
+
+    .promotion {
+        font-size: 50px;
+    }
 }

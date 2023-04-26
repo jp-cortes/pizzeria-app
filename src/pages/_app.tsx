@@ -1,12 +1,11 @@
 import type { AppProps } from 'next/app';
-import { Grandstander } from 'next/font/google'
-import Layout from '@/components/Layout';
-import store from '@/redux/store';
+import { Josefin_Sans } from 'next/font/google';
 import { Provider } from 'react-redux';
+import store from '@/redux/store';
 import '@/styles/globals.css';
 
-const grandStander = Grandstander({ 
-  weight: ['400', '500', '600', '700', '800', '900'],
+const grandStander = Josefin_Sans({ 
+  weight: ['400', '500', '600', '700'],
   style: ['normal', 'italic'],
   subsets: ['latin'],
 });
@@ -14,9 +13,9 @@ const grandStander = Grandstander({
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <Provider store={store}>
-      <Layout>
+      <main className={grandStander.className}>
           <Component {...pageProps} />
-      </Layout>
+      </main>
     </Provider>
   );
 }

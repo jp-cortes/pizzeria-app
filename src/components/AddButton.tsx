@@ -5,7 +5,7 @@ type Props = {
     setClose: Function;
 }
 
-export default function AddButton({ setClose }: Props) {
+export function AddButton({ setClose }: Props) {
   return (
     <button onClick={() => setClose(false)} className={styles.mainAddButton}>
         Add New Pizza

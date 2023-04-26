@@ -1,18 +1,20 @@
 import Head from 'next/head';
-import Featured from '@/components/Featured';
-import PizzaList from '@/components/PizzaList';
-import axios from 'axios';
-import { NextApiRequest } from 'next';
 import { useState } from 'react';
-import AddButton from '@/components/AddButton';
 import { AddProduct } from '@/components/AddProduct';
+import { Featured } from '@/components/Featured';
+import { PizzaList } from '@/components/PizzaList';
+import { AddButton } from '@/components/AddButton';
+import axios from 'axios';
 import styles from '@/styles/Home.module.css';
+import { Layout } from '@/components/Layout';
 
 
-export default function Home({ pizzaList }: { pizzaList: ProductBase[], admin: boolean}) {
+export default function Home({ pizzaList, admin }: { pizzaList: ProductBase[], admin: boolean}) {
 const [close, setClose] = useState(true);
 
   return (
+    <Layout>
+
     <div className={styles.container}>
       <Head>
         <title>Pizzeria</title>
@@ -22,10 +24,11 @@ const [close, setClose] = useState(true);
       </Head>
      
       <Featured/>
-      {<AddButton setClose={setClose}/>}
+      {admin && <AddButton setClose={setClose}/>}
       <PizzaList pizzaList={pizzaList}/>
       {!close && <AddProduct setClose={setClose}/>}
     </div>
+    </Layout>
   )
 }
 
@@ -37,10 +40,10 @@ export async function getServerSideProps(ctx: Ctx) {
   const myCookie = ctx.req?.cookies || "";
   let admin = false;
 
-
+//if the token is active
   if(myCookie.token === process.env.TOKEN) {
-
-    admin = true;
+    //admin already log in
+    admin = true; 
   }
 
   const resp = await axios.get("http://localhost:3000/api/products");
@@ -50,6 +53,7 @@ export async function getServerSideProps(ctx: Ctx) {
   return {
     props: {
       pizzaList: resp.data,
-    }
+      admin,
+    },
   }
 }

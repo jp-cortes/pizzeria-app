@@ -11,7 +11,7 @@ export default function Footer() {
       <div className={styles.item}>
         <div className={styles.card}>
           <h2 className={styles.motto}>
-          OH YES, WE DID.THE LAMA PIZZA, WELL BAKED SLICE OF PIZZA.
+          OH YES, WE ARE THE BEST PIZZA IN TOWN!
           </h2>
         </div>
         <div className={styles.card}>

@@ -4,10 +4,11 @@ import Image from 'next/image';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { addProduct } from '@/redux/cartSlice';
+import { Layout } from '@/components/Layout';
 
 
 export default function Product({ pizza  }: { pizza: ProductBase}) {
-    let defaultValue = 1
+  
     const dispatch = useDispatch();
     const [size, setSize] = useState(0);
     const [price, setPrice] = useState(pizza.prices[0]);
@@ -47,7 +48,8 @@ dispatch(addProduct({...pizza, extras, price, quantity }))
 }
 
   return (
-    <div className={styles.container}>
+   <Layout>
+     <div className={styles.container}>
         <div className={styles.left}>
             <div className={styles.imgContainer}>
                 <Image src={pizza.img} fill style={{ objectFit: 'contain' }} alt="product_img"/>
@@ -103,6 +105,7 @@ dispatch(addProduct({...pizza, extras, price, quantity }))
             </div>
         </div>
     </div>
+   </Layout>
   )
 }
 

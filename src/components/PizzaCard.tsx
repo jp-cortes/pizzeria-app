@@ -5,7 +5,7 @@ import Link from "next/link";
 
 
 
-export default function PizzaCard({ pizza }: PizzaCard) {
+export function PizzaCard({ pizza }: PizzaCard) {
   return (
     <div className={styles.container}>
       <Link href={`/product/${pizza._id}`}>

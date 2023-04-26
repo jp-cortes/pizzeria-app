@@ -3,6 +3,7 @@
     margin: 20px;
     background: var(--primary-color);
     width: 150px;
+    border: none;
     border-radius: 10px;
     color: var(--color-white);
     font-weight: 500;

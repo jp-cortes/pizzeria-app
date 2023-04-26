@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import styles from  '@/styles/Login.module.css';
+import { Layout } from '@/components/Layout';
 
 export default function Login() {
     
@@ -31,7 +32,8 @@ function resetInputs() {
 }
 
   return (
-    <div className={styles.container}>
+   <Layout>
+     <div className={styles.container}>
         <div className={styles.wrapper}>
             <h1 className={styles.title}>Admin Dashboard</h1>
             <form className={styles.form}
@@ -63,5 +65,6 @@ function resetInputs() {
             {error && <span className={styles.error}>Wrong Credentials!</span>}
         </div>
     </div>
-  )
+   </Layout>
+  );
 }

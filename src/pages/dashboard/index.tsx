@@ -4,6 +4,7 @@ import axios from 'axios';
 import Image from 'next/image';
 import styles from '@/styles/Dashboard.module.css';
 import { cookies } from 'next/dist/client/components/headers';
+import { Layout } from '@/components/Layout';
 
 type DasboardProps = {
   orders: ProductOrder[];
@@ -72,7 +73,8 @@ export default function Dashboard({ orders, products }: DasboardProps) {
 
    }
   return (
-    <div className={styles.container}>
+   <Layout>
+     <div className={styles.container}>
       <button 
       className={styles.logout}
       onClick={() => handlelogout()}>Log out</button>
@@ -158,6 +160,7 @@ export default function Dashboard({ orders, products }: DasboardProps) {
             </table>
       </div>
     </div>
+   </Layout>
   );
 }
 

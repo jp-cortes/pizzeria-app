@@ -3,13 +3,13 @@ import Image from 'next/image';
 import styles from '@/styles/Featured.module.css';
 
 
-export default function Featured() {
+export function Featured() {
     const [imgIndex,setImgIndex] = useState(0);
 
     const images = [
-        '/img/featured-00.png',
-        '/img/featured-02.png',
-        '/img/featured-03.png',
+        '/img/2.png',
+        '/img/4.png',
+        '/img/3.png',
     ];
 
     function handleArrow(direction: string) {

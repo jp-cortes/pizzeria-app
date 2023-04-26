@@ -7,6 +7,7 @@ import { reset } from '@/redux/cartSlice';
 import { OrderDetail } from '@/components/OrderDetail';
 import axios from 'axios';
 import styles from '@/styles/Cart.module.css';
+import { Layout } from '@/components/Layout';
 
 
 const PAYPAL_CLIENT_ID = process.env.PAYPAL_CLIENT_ID as string;
@@ -100,7 +101,8 @@ const ButtonWrapper = ({ currency, showSpinner }: PaypalButton) => {
 // console.log(open)
 
   return (
-    <div className={styles.container}>
+    <Layout>
+          <div className={styles.container}>
     <div className={styles.left}>
       <table className={styles.table}>
         <thead>
@@ -195,5 +197,6 @@ const ButtonWrapper = ({ currency, showSpinner }: PaypalButton) => {
     </div>
     {cash && <OrderDetail total={cart.total} createOrder={createOrder}  setCash={setCash}/>}
   </div>
-  )
+    </Layout>
+  );
 }
