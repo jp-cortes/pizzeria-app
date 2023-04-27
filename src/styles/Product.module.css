@@ -17,6 +17,7 @@
 }
 .title {
     margin-bottom: 30px;
+    text-transform: capitalize;
 }
 
 .desc {
@@ -81,6 +82,7 @@
 }
 .ingredients label {
     margin-left: 12px;
+    text-transform: capitalize;
 }
 
 .option {

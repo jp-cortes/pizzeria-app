@@ -27,9 +27,9 @@ export default function Navbar() {
           <button className={styles.menuMobileButton}
           onClick={handleVisivility}
           >
-            <Image src='' alt='menu_mobile' width={50} height={50}/>
-          </button>
-          {menuVisibility && <MenuMobile/>}
+            <Image src='/img/menu.png' alt='menu_mobile' width={40} height={40}/> 
+            </button>
+          {menuVisibility && <MenuMobile setMenuVisibility={setMenuVisibility}/>}
             <Image
             className={styles.logo}
             src='/img/logo.png' alt='logo' width={100} height={90}/>
@@ -40,14 +40,16 @@ export default function Navbar() {
             <Link href='/'>
             <li className={styles.listItem}>Homepage</li>
             </Link>
+            <a href='#menu'>
             <li className={styles.listItem}>Menu</li>
+            </a>
             <Link href='/products'>
             <li className={styles.listItem}>Products</li>
             </Link>
             
-            <Link href='#footer'>
+            <a href='#footer'>
             <li className={styles.listItem}>Contact</li>
-            </Link>
+            </a>
           </ul>
         </div>
         <div className={styles.contact}>

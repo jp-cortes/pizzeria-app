@@ -48,12 +48,15 @@ export async function getServerSideProps(ctx: Ctx) {
 
   const resp = await axios.get("http://localhost:3000/api/products");
   
-  // console.log(ctx, 'server')
- 
+  
+  
+  console.log(resp.status, 'server')
+
   return {
     props: {
       pizzaList: resp.data,
       admin,
     },
   }
+ 
 }

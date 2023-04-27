@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useRouter } from 'next/router';
 import styles from '@/styles/AddProduct.module.css';
 
 type Props = {
@@ -15,7 +14,7 @@ export function AddProduct({ setClose }: Props) {
   const [extraOptions, setExtraOptions] = useState([]);
   const [extra, setExtra] = useState<object | null>(null);
 
-  function changePrice(e) {
+  function changePrice(e, index: number) {
     const currentPrices = prices;
     currentPrices[index] = e.target.value;
     setPrices(currentPrices);
@@ -27,20 +26,22 @@ function handleExtraInput(e) {
 }
 
 function handleExtra() {
+  //handle all extra ingledient in the form
   setExtraOptions((prev) => [...prev, extra]);
 }
 
 async function handleCreate(e: { preventDefault: () => void; }) {
-// e.preventDefault();
+  e.preventDefault();
   const data = new FormData();
   data.append("file", file);
   data.append("upload_preset", "uploads");
 
 
   try {
-    const uploadRes = await axios.post(`${process.env.NEXT_URL_CLOUDINARY}`,
+    const uploadRes = await axios.post(`${process.env.NEXT_PUBLIC_CLOUDINARY_URL}`,
     data
     );
+   //response from the cloud
     const { url } = uploadRes.data;
     const newProduct = {
       title,
@@ -49,13 +50,15 @@ async function handleCreate(e: { preventDefault: () => void; }) {
       extraOptions,
       img: url,
     };
-
+    
     await axios.post("http://localhost:3000/api/products", newProduct);
-    setClose(true);
+    setClose(true);//close the modal
+    location.reload();//reload the page if the product is added
   } catch (error) {
     console.log(error);
   }
 }
+
   return (
     <div className={styles.container}>
 
@@ -129,7 +132,9 @@ async function handleCreate(e: { preventDefault: () => void; }) {
             name='price'
             onChange={handleExtraInput}
             />
-            <button className={styles.extraButton} onClick={handleExtra}>
+            <button 
+            type='button'
+            className={styles.extraButton} onClick={handleExtra}>
               Add
             </button>
           </div>
@@ -142,7 +147,7 @@ async function handleCreate(e: { preventDefault: () => void; }) {
             ))}
           </div>
           <button 
-         
+      
           className={styles.addButton}>
             Create
           </button>

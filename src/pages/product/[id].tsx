@@ -14,7 +14,7 @@ export default function Product({ pizza  }: { pizza: ProductBase}) {
     const [price, setPrice] = useState(pizza.prices[0]);
     const [extras, setExtras] = useState(Array<ProductOptions>);
     const [quantity, setQuantity] = useState(1);
-    // console.log(extras)
+    // console.log(pizza)
 
     function ChangePrice(number: number) {
         setPrice(price + number);

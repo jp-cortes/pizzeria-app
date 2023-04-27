@@ -32,7 +32,7 @@ export function Featured() {
         <div className={styles.wrapper} style={{ transform: `translateX(${-100 * imgIndex}vw)`}}>
             {images.map((img, i) => (
                 <div className={styles.imgContainer} key={i}>
-                    <h2 className={styles.promotion}>Pay 2 take 3!</h2>
+                    <h2 className={styles.promotion}>On Mondays Pay 2 take 3!</h2>
                     <Image src={img} alt='features' fill style={{ objectFit: 'contain' }}/>
                 </div>
             ))}

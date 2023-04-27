@@ -3,8 +3,8 @@ import { useRouter } from 'next/router';
 import axios from 'axios';
 import Image from 'next/image';
 import styles from '@/styles/Dashboard.module.css';
-import { cookies } from 'next/dist/client/components/headers';
 import { Layout } from '@/components/Layout';
+import DeleteProduct from '@/components/DeleteProduct';
 
 type DasboardProps = {
   orders: ProductOrder[];
@@ -14,14 +14,15 @@ type DasboardProps = {
 export default function Dashboard({ orders, products }: DasboardProps) {
   const [pizzaList, setPizzaList] = useState(products);
   const [orderList, setOrderList] = useState(orders);
-  const [delivered, setDelivered] = useState(false);
+  const [warning, setWarning] = useState(false);
+  const [productId, setProductId] = useState('');
   const status = ["preparing", "on the way", "delivered"];
   const router = useRouter();
 
    async function handleDelete(id:string | number) {
-    console.log(id);
+    // console.log(id);
     try {
-      const resp = await axios.delete(`http://localhost:3000/api/products/${id}`);
+      await axios.delete(`http://localhost:3000/api/products/${id}`);
       setPizzaList(pizzaList.filter((pizza) => pizza._id !== id));
     } catch (error) {
       console.log(error);
@@ -31,10 +32,7 @@ export default function Dashboard({ orders, products }: DasboardProps) {
    async function handleStatus(id: string | number) {
     const item = orderList.filter((order) => order._id === id)[0];
     const currentStatus = item.status;
-    if(currentStatus === 2) {
-      setDelivered(true)
-      return;
-    }
+    if(currentStatus === 2) return;
     try {
       const resp = await axios.put(`http://localhost:3000/api/orders/${id}`, { status: currentStatus + 1,
     });
@@ -49,18 +47,18 @@ export default function Dashboard({ orders, products }: DasboardProps) {
     }
    }
 
-   async function updateProduct(id: string) {
-    try {
-      const resp = await axios.get(`http://localhost:3000/api/products/${id}`)
-      console.log(resp.data)
-    } catch(error) {
-      console.log(error)
-    }
-   }
+  //  async function updateProduct(id: string) {
+  //   try {
+  //     const resp = await axios.get(`http://localhost:3000/api/products/${id}`)
+  //     console.log(resp.data)
+  //   } catch(error) {
+  //     console.log(error)
+  //   }
+  //  }
 
    function handlelogout() {
    
-      let allCookies = document.cookie.split('%');
+      // let allCookies = document.cookie.split('%');
       
   
       // The "expire" attribute of every cookie is 
@@ -68,13 +66,14 @@ export default function Dashboard({ orders, products }: DasboardProps) {
       // for (let i = 0; i < allCookies.length; i++){
       // }
       // allCookies[0] + "=;expires=" + new Date(0).toUTCString();
-      console.log(allCookies)
+      // console.log(allCookies)
       
 
    }
   return (
    <Layout>
      <div className={styles.container}>
+      {warning && <DeleteProduct productId={productId} setPizzaList={setPizzaList} pizzaList={pizzaList} setWarning={setWarning}/>}
       <button 
       className={styles.logout}
       onClick={() => handlelogout()}>Log out</button>
@@ -107,10 +106,13 @@ export default function Dashboard({ orders, products }: DasboardProps) {
                 <td>{product.prices[0]}</td>
                 <td>
                   <button 
-                  onClick={() => updateProduct(product._id)}
+                  onClick={() => console.log('hello')}
                   className={styles.button}>Edit</button>
                   <button 
-                    onClick={() => handleDelete(product._id)}
+                    onClick={() => {
+                      setProductId(product._id);
+                      setWarning(true);
+                    }}
                     className={styles.button}
                     >
                     Delete

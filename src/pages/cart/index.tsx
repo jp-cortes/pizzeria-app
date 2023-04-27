@@ -176,7 +176,7 @@ const ButtonWrapper = ({ currency, showSpinner }: PaypalButton) => {
 
         <PayPalScriptProvider
                 options={{
-                    "client-id": "AYdHi4ACCvLOoon0eLJie42FGPobcWemKvL6flr8HG-4goeWvQYZK6s-icQ50lfA16jeBRK6qsigNiLA",
+                    "client-id": `${process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID}`,
                     components: "buttons",
                     currency: "EUR",
                     

@@ -59,6 +59,38 @@
     cursor: pointer;
 }
 
+.containerDelete {
+    background-color: rgba(245, 240, 240, 0.52);
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapperDelete {
+    width: 500px;
+    height: 200px;
+    background: var(--color-white);
+    padding: 10px 50px;
+    border-radius:20px;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    position: relative;
+}
+
+.confirm {
+    background: teal;
+}
+.cancel {
+    background: crimson;  
+}
+
 @media screen and (max-width: 920px) {
 
     .container {

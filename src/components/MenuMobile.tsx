@@ -1,12 +1,26 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import styles from '@/styles/Navbar.module.css';
 
-type Props = {}
+type Props = {
+  setMenuVisibility: Function;
+}
 
-export function MenuMobile({}: Props) {
+export function MenuMobile({ setMenuVisibility }: Props) {
+
+function handleClick() {
+  setMenuVisibility(prev => !prev);
+}
+
   return (
     <div className={styles.containerMobile}>
+      <button
+      className={styles.menuMobileClose}
+      onClick={handleClick}
+      >
+      <Image src='/img/cross.png' alt='menu_mobile' width={40} height={40}/>
+      </button>
          <ul className={styles.listMobile}>
             <Link href='/'>
             <li className={styles.listItemMobile}>Homepage</li>
