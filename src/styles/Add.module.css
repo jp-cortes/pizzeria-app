@@ -11,5 +11,8 @@
     cursor: pointer;
 }
 
+.mainAddButton:hover {
+    opacity: 0.5;
+}
 
 

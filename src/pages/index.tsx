@@ -1,17 +1,12 @@
 import Head from 'next/head';
-import { useState } from 'react';
-import { AddProduct } from '@/components/AddProduct';
 import { Featured } from '@/components/Featured';
 import { PizzaList } from '@/components/PizzaList';
-import { AddButton } from '@/components/AddButton';
+import { Layout } from '@/components/Layout';
 import axios from 'axios';
 import styles from '@/styles/Home.module.css';
-import { Layout } from '@/components/Layout';
 
 
-export default function Home({ pizzaList, admin }: { pizzaList: ProductBase[], admin: boolean}) {
-const [close, setClose] = useState(true);
-
+export default function Home({ pizzaList }: { pizzaList: ProductBase[]}) {
   return (
     <Layout>
 
@@ -23,10 +18,9 @@ const [close, setClose] = useState(true);
         <link rel="icon" href="/favicon.ico" />
       </Head>
      
-      <Featured/>
-      {admin && <AddButton setClose={setClose}/>}
+      <Featured/>      
       <PizzaList pizzaList={pizzaList}/>
-      {!close && <AddProduct setClose={setClose}/>}
+     
     </div>
     </Layout>
   )
@@ -36,26 +30,15 @@ const [close, setClose] = useState(true);
 
 
 
-export async function getServerSideProps(ctx: Ctx) {
-  const myCookie = ctx.req?.cookies || "";
-  let admin = false;
+export async function getServerSideProps() {
 
-//if the token is active
-  if(myCookie.token === process.env.TOKEN) {
-    //admin already log in
-    admin = true; 
-  }
-
-  const resp = await axios.get("http://localhost:3000/api/products");
-  
-  
-  
-  console.log(resp.status, 'server')
+ const resp = await axios.get("http://localhost:3000/api/products");
+  // console.log(resp.status, 'server')
 
   return {
     props: {
       pizzaList: resp.data,
-      admin,
+    
     },
   }
  

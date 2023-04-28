@@ -8,7 +8,7 @@ import { Layout } from '@/components/Layout';
 
 
 export default function Product({ pizza  }: { pizza: ProductBase}) {
-  
+  //states
     const dispatch = useDispatch();
     const [size, setSize] = useState(0);
     const [price, setPrice] = useState(pizza.prices[0]);
@@ -19,32 +19,33 @@ export default function Product({ pizza  }: { pizza: ProductBase}) {
     function ChangePrice(number: number) {
         setPrice(price + number);
     }
-    
+    //change the price on  adynamic way on click
     function handleSize(sizeIndex: number) {
         const difference = pizza.prices[sizeIndex] - pizza.prices[size];
-        setSize(sizeIndex)
+        setSize(sizeIndex);
         ChangePrice(difference);
     }
-
+//change the price adding the extra options
 function handleChange(event: React.ChangeEvent<HTMLInputElement>, option:ProductOptions) {
     const checked = event.target.checked;
 
     if(checked) {
-ChangePrice(option.price);
-setExtras([...extras, option]);
-} else {
+        ChangePrice(option.price);
+        setExtras([...extras, option]);
+    } else {
         ChangePrice(-option.price);
         setExtras(extras.filter((extra) => extra._id !== option._id))
 
     }
 }
 function handleInputChange (event: React.ChangeEvent<HTMLInputElement>) {
-    // console.log(quantity)
+    //set the quantity to the shoping cart
  setQuantity(parseInt(event.target.value, 10))
 }
 
+// send everything to the shopping cart
 function handleClick() {
-dispatch(addProduct({...pizza, extras, price, quantity }))
+dispatch(addProduct({...pizza, extras, price, quantity }));
 }
 
   return (
@@ -94,8 +95,7 @@ dispatch(addProduct({...pizza, extras, price, quantity }))
             <div className={styles.add}>
                 <input onChange={handleInputChange} 
                 type='number' 
-                // handleInputChange
-                defaultValue={quantity}
+                // defaultValue={quantity}
                 min={1} 
                 className={styles.quantity}/>
                 <button
@@ -113,7 +113,7 @@ dispatch(addProduct({...pizza, extras, price, quantity }))
 export async function getServerSideProps({ params } :{ params : ProductBase }) {
     const resp = await axios.get(`http://localhost:3000/api/products/${params.id}`);
 
-    console.log(resp, 'server')
+    // console.log(resp, 'server')
    
     return {
       props: {

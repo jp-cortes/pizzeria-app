@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import Image from 'next/image';
@@ -55,21 +55,19 @@ export default function Dashboard({ orders, products }: DasboardProps) {
   //     console.log(error)
   //   }
   //  }
+ 
 
    function handlelogout() {
-   
-      // let allCookies = document.cookie.split('%');
-      
-  
-      // The "expire" attribute of every cookie is 
-      // Set to "Thu, 01 Jan 1970 00:00:00 GMT"
-      // for (let i = 0; i < allCookies.length; i++){
-      // }
-      // allCookies[0] + "=;expires=" + new Date(0).toUTCString();
-      // console.log(allCookies)
-      
+//delete the token stored in cookies
+// Set to "Thu, 01 Jan 1970 00:00:00 GMT"
+document.cookie='token=deleted;' + "path=/; expires=" + new Date(0).toUTCString();
+// then will retun the user to the login page
+location.reload(); 
 
+     
+     
    }
+  
   return (
    <Layout>
      <div className={styles.container}>

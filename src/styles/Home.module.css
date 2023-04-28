@@ -1,0 +1,9 @@
+.dashboardButton {
+    background-color: rgba(236, 236, 59, 0.584);
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.dashboardButton:hover {
+    opacity: 0.5;
+}

@@ -82,6 +82,30 @@
     flex-direction: column;
     justify-content:center;
     position: relative;
+    text-align: center;
+}
+
+.wrapperDelete img {
+    margin: 20px auto;
+}
+
+.wrapperButtons {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 30px;
+}
+.deleteButton {
+    width: 150px;
+    border: none;
+    border-radius: 8px;
+    padding: 8px;
+    color: var(--color-white);
+    cursor: pointer;
+}
+
+.deleteButton:hover {
+    opacity: 0.5;
 }
 
 .confirm {

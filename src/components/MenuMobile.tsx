@@ -10,7 +10,7 @@ type Props = {
 export function MenuMobile({ setMenuVisibility }: Props) {
 
 function handleClick() {
-  setMenuVisibility(prev => !prev);
+  setMenuVisibility((prev: boolean) => !prev);
 }
 
   return (
@@ -22,15 +22,26 @@ function handleClick() {
       <Image src='/img/cross.png' alt='menu_mobile' width={40} height={40}/>
       </button>
          <ul className={styles.listMobile}>
-            <Link href='/'>
+            <Link 
+            onClick={handleClick}
+            href='/'>
             <li className={styles.listItemMobile}>Homepage</li>
             </Link>
-            <li className={styles.listItemMobile}>Menu</li>
-            <Link href='/products'>
+            <Link 
+            onClick={handleClick}
+            href='/promotions'>
+            <li 
+            className={styles.listItemMobile}>Promotions</li>
+            </Link>
+            <Link 
+            onClick={handleClick}
+            href='/products'>
             <li className={styles.listItemMobile}>Products</li>
             </Link>
             
-            <Link href='#footer'>
+            <Link 
+            onClick={handleClick}
+            href='#footer'>
             <li className={styles.listItemMobile}>Contact</li>
             </Link>
           </ul>

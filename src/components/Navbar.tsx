@@ -40,9 +40,9 @@ export default function Navbar() {
             <Link href='/'>
             <li className={styles.listItem}>Homepage</li>
             </Link>
-            <a href='#menu'>
-            <li className={styles.listItem}>Menu</li>
-            </a>
+            <Link href='/promotions'>
+            <li className={styles.listItem}>Promotions</li>
+            </Link>
             <Link href='/products'>
             <li className={styles.listItem}>Products</li>
             </Link>

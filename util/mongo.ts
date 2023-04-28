@@ -5,7 +5,7 @@ const MONGODB_URL = process.env.MONGODB_URL as string;
 if (!MONGODB_URL) {
   throw new Error(
     'Please define the MONGODB_URL environment variable inside .env.local'
-  )
+  );
 }
 
 /**
@@ -14,7 +14,7 @@ if (!MONGODB_URL) {
  * during API Route usage.
  */
 
-let cached = global.myGlobal
+let cached = global.myGlobal;
 
 if (!cached) {
   cached = global.myGlobal = { conn: null, promise: null }
@@ -22,7 +22,7 @@ if (!cached) {
 
 async function dbConnect() {
   if (cached.conn) {
-    return cached.conn
+    return cached.conn;
   }
 
   if (!cached.promise) {
@@ -31,18 +31,18 @@ async function dbConnect() {
     }
 
     cached.promise = mongoose.connect(MONGODB_URL, opts).then((mongoose) => {
-      return mongoose
+      return mongoose;
     })
   }
 
   try {
-    cached.conn = await cached.promise
+    cached.conn = await cached.promise;
   } catch (e) {
     cached.promise = null
     throw e
   }
 
-  return cached.conn
+  return cached.conn;
 }
 
-export default dbConnect
+export default dbConnect;

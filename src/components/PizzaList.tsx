@@ -5,7 +5,7 @@ import styles from '@/styles/PizzaList.module.css';
 
 
  function mapProduct(pizzaList: ProductBase[]): ReactNode {
-  return pizzaList?.map((pizza) => (
+  return pizzaList?.slice(0,6).map((pizza) => (
      <PizzaCard pizza={pizza} key={pizza._id} />
    ));
  }
