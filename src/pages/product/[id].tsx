@@ -63,18 +63,18 @@ dispatch(addProduct({...pizza, extras, price, quantity }));
             <p className={styles.desc}>{pizza.desc}</p>
             <h3 className={styles.choose}>Choose the size</h3>
             <div className={styles.sizes}>
-                <div className={styles.size} onClick={() => handleSize(0)}>
+                <button type='button' className={styles.size} onClick={() => handleSize(0)}>
                     <Image src='/img/size.png' fill alt=''/>
                     <span className={styles.number}>Small</span>
-                </div>
-                <div className={styles.size} onClick={() => handleSize(1)}>
+                </button>
+                <button type='button' className={styles.size} onClick={() => handleSize(1)}>
                     <Image src='/img/size.png' fill alt=''/>
                     <span className={styles.number}>Medium</span>
-                </div>
-                <div className={styles.size} onClick={() => handleSize(2)}>
+                </button>
+                <button type='button' className={styles.size} onClick={() => handleSize(2)}>
                     <Image src='/img/size.png' fill alt=''/>
                     <span className={styles.number}>Large</span>
-                </div>
+                </button>
             </div>
             <h3 className={styles.choose}>Choose aditional Ingredients</h3>
 
@@ -95,7 +95,7 @@ dispatch(addProduct({...pizza, extras, price, quantity }));
             <div className={styles.add}>
                 <input onChange={handleInputChange} 
                 type='number' 
-                // defaultValue={quantity}
+                defaultValue={1}
                 min={1} 
                 className={styles.quantity}/>
                 <button

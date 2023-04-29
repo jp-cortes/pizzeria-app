@@ -6,7 +6,7 @@
     border: none;
     border-radius: 10px;
     color: var(--color-white);
-    font-weight: 500;
+    font-weight: bold;
     text-align: center;
     cursor: pointer;
 }

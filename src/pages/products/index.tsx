@@ -28,7 +28,7 @@ import styles from '@/styles/AllProducts.module.css';
        <div className={styles.container}>
           <h1 className={styles.title}>Our Specialties</h1>
           <p className={styles.desc}>
-              There are Promotions everyday!
+              There is a  different Promotion everyday!
           </p>
           <div className={styles.wrapper}>
             {pizzaList?.map((pizza) => (

@@ -38,7 +38,7 @@ export default function Navbar() {
         <div className={styles.item}>
           <ul className={styles.list}>
             <Link href='/'>
-            <li className={styles.listItem}>Homepage</li>
+            <li className={styles.listItem}>Home</li>
             </Link>
             <Link href='/promotions'>
             <li className={styles.listItem}>Promotions</li>

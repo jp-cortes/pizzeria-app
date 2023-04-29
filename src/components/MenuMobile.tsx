@@ -25,7 +25,7 @@ function handleClick() {
             <Link 
             onClick={handleClick}
             href='/'>
-            <li className={styles.listItemMobile}>Homepage</li>
+            <li className={styles.listItemMobile}>Home</li>
             </Link>
             <Link 
             onClick={handleClick}

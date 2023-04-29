@@ -52,6 +52,12 @@
     height: 50px;
     position: relative;
     cursor: pointer;
+    border-radius: 50%;
+    border: none;
+}
+
+.size:focus {
+    background-color:rgba(236, 236, 59, 0.584);
 }
 
 .size:nth-child(2) {
