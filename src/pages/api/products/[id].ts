@@ -40,12 +40,12 @@ export default async function handler(
   }
   if(method === 'PUT') {
 
-    if(!token || token !== process.env.TOKEN){
-      return res.status(401).json("Not authenticated");
-    }
+    // if(!token || token !== process.env.TOKEN){
+    //   return res.status(401).json("Not authenticated");
+    // }
 
     try {
-        const product = await Product.findByIdAndUpdate(req.body, {
+        const product = await Product.findByIdAndUpdate(id, req.body, {
           new: true
         });
         res.status(201).json(product);

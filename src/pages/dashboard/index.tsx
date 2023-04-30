@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+import React, { useState } from 'react';
 import axios from 'axios';
 import Image from 'next/image';
 import styles from '@/styles/Dashboard.module.css';
 import { Layout } from '@/components/Layout';
 import DeleteProduct from '@/components/DeleteProduct';
+import { UpdateProduct } from '@/components/UpdateProduct';
 
 type DasboardProps = {
   orders: ProductOrder[];
@@ -15,19 +15,10 @@ export default function Dashboard({ orders, products }: DasboardProps) {
   const [pizzaList, setPizzaList] = useState(products);
   const [orderList, setOrderList] = useState(orders);
   const [warning, setWarning] = useState(false);
+  const [update, setUpdate] = useState(false);
   const [productId, setProductId] = useState('');
   const status = ["preparing", "on the way", "delivered"];
-  const router = useRouter();
-
-   async function handleDelete(id:string | number) {
-    // console.log(id);
-    try {
-      await axios.delete(`http://localhost:3000/api/products/${id}`);
-      setPizzaList(pizzaList.filter((pizza) => pizza._id !== id));
-    } catch (error) {
-      console.log(error);
-    }
-   }
+  
 
    async function handleStatus(id: string | number) {
     const item = orderList.filter((order) => order._id === id)[0];
@@ -47,31 +38,19 @@ export default function Dashboard({ orders, products }: DasboardProps) {
     }
    }
 
-  //  async function updateProduct(id: string) {
-  //   try {
-  //     const resp = await axios.get(`http://localhost:3000/api/products/${id}`)
-  //     console.log(resp.data)
-  //   } catch(error) {
-  //     console.log(error)
-  //   }
-  //  }
- 
 
    function handlelogout() {
-//delete the token stored in cookies
-// Set to "Thu, 01 Jan 1970 00:00:00 GMT"
-document.cookie='token=deleted;' + "path=/; expires=" + new Date(0).toUTCString();
-// then will retun the user to the login page
-location.reload(); 
-
-     
-     
+      //delete the token stored in cookies
+      // Set to "Thu, 01 Jan 1970 00:00:00 GMT"
+      document.cookie='token=deleted;' + "path=/; expires=" + new Date(0).toUTCString();
+      // then will retun the user to the login page
+      location.reload();   
    }
+
   
   return (
    <Layout>
      <div className={styles.container}>
-      {warning && <DeleteProduct productId={productId} setPizzaList={setPizzaList} pizzaList={pizzaList} setWarning={setWarning}/>}
       <button 
       className={styles.logout}
       onClick={() => handlelogout()}>Log out</button>
@@ -101,10 +80,13 @@ location.reload();
                 </td>
                 <td>{product._id.slice(0, 5)}...</td>
                 <td>{product.title}</td>
-                <td>{product.prices[0]}</td>
+                <td>€ {product.prices[0]}</td>
                 <td>
                   <button 
-                  onClick={() => console.log('hello')}
+                  onClick={() => {
+                    setUpdate(true);
+                    setProductId(product._id);
+                  }}
                   className={styles.button}>Edit</button>
                   <button 
                     onClick={() => {
@@ -141,7 +123,7 @@ location.reload();
                   <tr className={styles.trTitle}>
                     <td>{order._id.slice(0, 5)}...</td>
                     <td>{order.customer}</td>
-                    <td>{order.total}</td>
+                    <td>€ {order.total}</td>
                     <td>
                       {order.method === 0 ? <span>cash</span> : <span>paid</span>}
                     </td>
@@ -159,6 +141,8 @@ location.reload();
               ))}
             </table>
       </div>
+      {warning && <DeleteProduct productId={productId} setPizzaList={setPizzaList} pizzaList={pizzaList} setWarning={setWarning}/>}
+      {update && <UpdateProduct setUpdate={setUpdate} productId={productId}/>}
     </div>
    </Layout>
   );

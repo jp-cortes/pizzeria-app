@@ -53,7 +53,7 @@ dispatch(addProduct({...pizza, extras, price, quantity }));
      <div className={styles.container}>
         <div className={styles.left}>
             <div className={styles.imgContainer}>
-                <Image src={pizza.img} fill style={{ objectFit: 'contain' }} alt="product_img"/>
+                <Image src={pizza.img} priority fill style={{ objectFit: 'contain' }} alt="product_img"/>
             </div>
         </div>
         <div className={styles.right}>

@@ -30,10 +30,13 @@ export default function DeleteProduct({ productId, setPizzaList, pizzaList, setW
             <h3>Do you want to delete this product?</h3>
             <div className={styles.wrapperButtons}>
             <button 
-            onClick={() => handleDelete(productId)}
+            onClick={() => {
+              handleDelete(productId);
+              setWarning((prev: boolean) => !prev);
+            }}
             className={`${styles.deleteButton} ${styles.confirm}`}>Sure</button>
             <button 
-            onClick={() => setWarning(prev => !prev) }
+            onClick={() => setWarning((prev: boolean) => !prev) }
             className={`${styles.deleteButton} ${styles.cancel}`}>Cancel</button>
             </div>
         </div>
