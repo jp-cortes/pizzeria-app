@@ -1,16 +1,16 @@
 import React from 'react';
+import { Layout } from '@/components/Layout';
 import Image from 'next/image';
 import axios from 'axios';
 import styles from '@/styles/Orders.module.css';
-import { Layout } from '@/components/Layout';
 
 export default function Orders({ order }: { order : ProductOrder }) {
 const status = order.status;
 
 function StatusClass(index: number) {
-    if(index - status < 1) return styles.done;
-    if(index - status === 1) return styles.inProgress;
-    if(index - status > 1) return styles.undone;
+    if(index - status < 1) return styles.done;// check mark
+    if(index - status === 1) return styles.inProgress;//blinking
+    if(index - status > 1) return styles.undone;// opacity 0.5
 }
 
   return (

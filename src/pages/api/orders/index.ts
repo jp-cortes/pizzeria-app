@@ -30,6 +30,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
  }
 
 
- if (method === 'DELETE') {}
+ if (method === 'DELETE') { }
 
 }

@@ -21,6 +21,6 @@ if(req.method === "POST") {
         } else {
         res.status(400).json("Wrong Credentials"); 
 
-    }
-}
+    };
+};
 }

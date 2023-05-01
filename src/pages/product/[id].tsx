@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import styles from '@/styles/Product.module.css';
 import Image from 'next/image';
-import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { addProduct } from '@/redux/cartSlice';
 import { Layout } from '@/components/Layout';
+import axios from 'axios';
+import styles from '@/styles/Product.module.css';
 
 
 export default function Product({ pizza  }: { pizza: ProductBase}) {
@@ -19,7 +19,7 @@ export default function Product({ pizza  }: { pizza: ProductBase}) {
     function ChangePrice(number: number) {
         setPrice(price + number);
     }
-    //change the price on  adynamic way on click
+    //change the price on  a dynamic way on click
     function handleSize(sizeIndex: number) {
         const difference = pizza.prices[sizeIndex] - pizza.prices[size];
         setSize(sizeIndex);
@@ -64,15 +64,15 @@ dispatch(addProduct({...pizza, extras, price, quantity }));
             <h3 className={styles.choose}>Choose the size</h3>
             <div className={styles.sizes}>
                 <button type='button' className={styles.size} onClick={() => handleSize(0)}>
-                    <Image src='/img/size.png' fill alt=''/>
+                    <Image src='/img/size.png' fill alt='small_pizza'/>
                     <span className={styles.number}>Small</span>
                 </button>
                 <button type='button' className={styles.size} onClick={() => handleSize(1)}>
-                    <Image src='/img/size.png' fill alt=''/>
+                    <Image src='/img/size.png' fill alt='medium_pizza'/>
                     <span className={styles.number}>Medium</span>
                 </button>
                 <button type='button' className={styles.size} onClick={() => handleSize(2)}>
-                    <Image src='/img/size.png' fill alt=''/>
+                    <Image src='/img/size.png' fill alt='large_pizza'/>
                     <span className={styles.number}>Large</span>
                 </button>
             </div>

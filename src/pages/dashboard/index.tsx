@@ -19,11 +19,11 @@ export default function Dashboard({ orders, products }: DasboardProps) {
   const [productId, setProductId] = useState('');
   const status = ["preparing", "on the way", "delivered"];
   
-
+//will update the status of the order
    async function handleStatus(id: string | number) {
     const item = orderList.filter((order) => order._id === id)[0];
     const currentStatus = item.status;
-    if(currentStatus === 2) return;
+    if(currentStatus === 2) return;//status delivered
     try {
       const resp = await axios.put(`http://localhost:3000/api/orders/${id}`, { status: currentStatus + 1,
     });

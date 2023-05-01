@@ -23,13 +23,9 @@ async function handleCLick(e: { preventDefault: () => void; }) {
         setError(true);
       
     }
-   
+  
 }
 
-function resetInputs() {
-    setUsername('');
-    setPassword('');
-}
 
   return (
    <Layout>
@@ -45,6 +41,7 @@ function resetInputs() {
                 setError(false);
                 setUsername(e.target.value);
             }}
+            
             />
             <input
             placeholder='Password'

@@ -5,13 +5,11 @@ import {  PayPalScriptProvider, PayPalButtons, usePayPalScriptReducer } from "@p
 import { useRouter } from 'next/router';
 import { reset } from '@/redux/cartSlice';
 import { OrderDetail } from '@/components/OrderDetail';
+import { Layout } from '@/components/Layout';
 import axios from 'axios';
 import styles from '@/styles/Cart.module.css';
-import { Layout } from '@/components/Layout';
 
 
-const PAYPAL_CLIENT_ID = process.env.PAYPAL_CLIENT_ID as string;
-console.log(PAYPAL_CLIENT_ID)
 export default function Cart() {
   const cart = useSelector((state: RootState) => state.cart);
   // console.log('cart', cart);
@@ -88,7 +86,7 @@ const ButtonWrapper = ({ currency, showSpinner }: PaypalButton) => {
                       customer: shipping?.name?.full_name,
                       address: shipping?.address?.address_line_1,
                       total: cart.total,
-                      method: 1,
+                      method: 1,//
                     })
           
                   });

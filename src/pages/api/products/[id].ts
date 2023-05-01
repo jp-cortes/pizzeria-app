@@ -2,17 +2,6 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import dbConnect from '../../../../util/mongo'
 import Product from '../../../models/Product';
 
-type Data = {
-  id: string,
-  title: string,
-  desc: string,
-  img: string,
-  prices: [number],
-  extraOptions: [string | number],
-  createdAt: string,
-  updatedAt: string,
-  __v: number
-}
 
 
 export default async function handler(
@@ -32,17 +21,17 @@ export default async function handler(
 
   if(method === 'GET') {
     try {
-        const product: Data | null = await Product.findById(id);
+        const product: ProductBase | null = await Product.findById(id);
       res.status(200).json(product);  
     } catch (error: unknown) {
         res.status(500).json(error);
     }
   }
   if(method === 'PUT') {
-
-    // if(!token || token !== process.env.TOKEN){
-    //   return res.status(401).json("Not authenticated");
-    // }
+//only with authorization is able to update products
+    if(!token || token !== process.env.TOKEN){
+      return res.status(401).json("Not authenticated");
+    }
 
     try {
         const product = await Product.findByIdAndUpdate(id, req.body, {
@@ -55,7 +44,7 @@ export default async function handler(
   }
 
   if(method === 'DELETE') {
-    
+    //only with authorization is able to delete products
     if(!token || token !== process.env.TOKEN){
       return res.status(401).json("Not authenticated");
     }
