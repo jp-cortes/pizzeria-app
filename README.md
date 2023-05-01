@@ -12,6 +12,7 @@ This is a web application for a pizzeria restaurant built with Next.js and Redux
 * Redux
 * MongoDB with Mongoose
 * PayPal API
+* Typescript
 
 # Installation
 * Clone the repository
@@ -28,10 +29,14 @@ bash
 * Set up environment variables
 Create a .env file in the root directory of the project and add the following variables:
 
-makefile
+makefile .env
 ```
 NEXT_PUBLIC_PAYPAL_CLIENT_ID=<PayPal client ID>
-MONGODB_URI=<MongoDB URI>
+MONGODB_URL=<MongoDB URL>
+ADMIN_USERNAME = <user>
+ADMIN_PASSWORD = <password>
+TOKEN = <token>
+NEXT_PUBLIC_CLOUDINARY_URL = <cloudinary url>
 ```
 * Start the application
 
