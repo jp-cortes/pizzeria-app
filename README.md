@@ -53,9 +53,10 @@ The web application can be accessed by visiting http://localhost:3000 in your we
 * Provide your details and confirm your order
 
 # Admin Dashboard
-* Visit http://localhost:3000/admin in your web browser
+* Visit http://localhost:3000/dashboard in your web browser
 * Log in with the admin credentials
 * View and manage orders
+* Create Read, Update & delete products
 
 # License
 This project is licensed under the MIT License. See the LICENSE file for details.
