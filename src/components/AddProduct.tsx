@@ -5,14 +5,17 @@ import styles from '@/styles/AddProduct.module.css';
 type Props = {
     setClose: Function;
 };
+type Options = {
+  text: string;
+};
 
 export function AddProduct({ setClose }: Props) {
-  const [file, setFile] = useState<string | Blob >('');//image
+  const [file, setFile] = useState<Blob | string>('');//image
   const [title, setTitle] = useState<string | null>(null);//title
   const [desc, setDesc] = useState<string | null>(null);//description
-  const [prices, setPrices] = useState<number[]| string[]>([]);// prices
-  const [extraOptions, setExtraOptions] = useState([]);
-  const [extra, setExtra] = useState<object | null>(null);//extra options
+  const [prices, setPrices] = useState<number[] | string[]>([]);// prices
+  const [extraOptions, setExtraOptions] = useState <Options[]>([]);
+  const [extra, setExtra] = useState({});//extra options
 
   function changePrice(e: React.ChangeEvent<HTMLInputElement>, index: number) {
     const currentPrices = prices;
@@ -26,7 +29,7 @@ function handleExtraInput(e:React.ChangeEvent<HTMLInputElement>) {
 }
 
 function handleExtra() {
-  //handle all extra ingledient in the form
+  //handle all extra ingredient in the form
   setExtraOptions((prev) => [...prev, extra]);
 }
 
@@ -138,7 +141,7 @@ async function handleCreate(e: { preventDefault: () => void; }) {
           </button>
         </div>
         <div className={styles.extraItems}>
-          {extraOptions.map((option: { text: string }) => (
+          {extraOptions.map((option) => (
             <span className={styles.extraItem} key={option.text}>
               {option.text}
             </span>

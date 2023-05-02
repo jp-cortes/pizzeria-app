@@ -10,7 +10,7 @@ export default function Promotions() {
     <Layout>
       <div className={styles.container}>
         <div className={styles.wrapper}>
-          <h1>Today's Promotion</h1>
+          <h1>Today&apos;s Promotion</h1>
           <h3>Quattro Formaggi</h3>
             <Image src='/img/3.png' width={300} height={400} alt=''/>
               <p className={styles.promotionText}>Pay <b>2</b> and you will get <b>3</b> Pizzas Quattro Formaggi</p>

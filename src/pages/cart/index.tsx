@@ -13,7 +13,7 @@ import styles from '@/styles/Cart.module.css';
 export default function Cart() {
   const cart = useSelector((state: RootState) => state.cart);
   // console.log('cart', cart);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch();//redux
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [cash, setCash] = useState(false);
@@ -28,7 +28,7 @@ async function createOrder(data: Partial<ProductOrder>) {
   try {
     const res = await axios.post('http://localhost:3000/api/orders', data);
     if(res.status === 201) {
-      dispatch(reset());
+      dispatch(reset());//redux
       router.push(`/orders/${res.data._id}`);
     }
   } catch (error) {
