@@ -1,4 +1,3 @@
-import React from 'react';
 import Image from 'next/image';
 import axios from 'axios';
 import styles from '@/styles/Dashboard.module.css';
@@ -9,9 +8,9 @@ type Props = {
     pizzaList: ProductBase[];
     setWarning: Function;
 
-}
+};
 
-export default function DeleteProduct({ productId, setPizzaList, pizzaList, setWarning }: Props) {
+export function DeleteProduct({ productId, setPizzaList, pizzaList, setWarning }: Props) {
 
     async function handleDelete(id:string | number) {
         // console.log(id);
@@ -20,7 +19,7 @@ export default function DeleteProduct({ productId, setPizzaList, pizzaList, setW
           setPizzaList(pizzaList.filter((pizza) => pizza._id !== id));
         } catch (error) {
           console.log(error);
-        }
+        };
        }
 
   return (
@@ -41,5 +40,5 @@ export default function DeleteProduct({ productId, setPizzaList, pizzaList, setW
             </div>
         </div>
     </div>
-  )
+  );
 }

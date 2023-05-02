@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import Image from 'next/image';
-import styles from '@/styles/Dashboard.module.css';
+import { useState } from 'react';
 import { Layout } from '@/components/Layout';
-import DeleteProduct from '@/components/DeleteProduct';
+import { DeleteProduct }from '@/components/DeleteProduct';
 import { UpdateProduct } from '@/components/UpdateProduct';
+import Image from 'next/image';
+import axios from 'axios';
+import styles from '@/styles/Dashboard.module.css';
 
 type DasboardProps = {
   orders: ProductOrder[];
   products: ProductBase[];
-}
+};
 
 export default function Dashboard({ orders, products }: DasboardProps) {
   const [pizzaList, setPizzaList] = useState(products);
@@ -158,7 +158,7 @@ if(myCookie.token !== process.env.TOKEN) {
       destination: "/dashboard/login",
       permanent: false,
     }
-  }
+  };
 }
 
 
@@ -170,5 +170,5 @@ if(myCookie.token !== process.env.TOKEN) {
       orders: orderResp.data,
       products: productResp.data,
     }
-  }
+  };
 }

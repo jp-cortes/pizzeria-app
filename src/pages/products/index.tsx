@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { PizzaCard } from '@/components/PizzaCard';
 import { AddButton } from '@/components/AddButton';
 import { AddProduct } from '@/components/AddProduct';
@@ -11,7 +11,11 @@ import styles from '@/styles/AllProducts.module.css';
 
   export  default function Products({ pizzaList, admin }: { pizzaList: ProductBase[], admin: boolean}) {
     const [close, setClose] = useState(true);
- const promoId = '645025a02f0e77129f3ba5ca'
+
+    const promoId = '645025a02f0e77129f3ba5ca';//promo id code
+
+
+
     return (
    <Layout>
      {admin && 
@@ -57,6 +61,6 @@ import styles from '@/styles/AllProducts.module.css';
         pizzaList: resp.data,
         admin,
       },
-    }
+    };
    
   }

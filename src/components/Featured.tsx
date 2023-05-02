@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import styles from '@/styles/Featured.module.css';
 
@@ -46,5 +46,5 @@ export function Featured() {
         <Image src='/img/arrowr.png' alt='arrow_left' fill style={{ objectFit: 'contain' }}/>
         </div>
     </div>
-  )
+  );
 }

@@ -1,11 +1,10 @@
-import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from '@/styles/Navbar.module.css';
 
 type Props = {
   setMenuVisibility: Function;
-}
+};
 
 export function MenuMobile({ setMenuVisibility }: Props) {
 
@@ -46,5 +45,5 @@ function handleClick() {
             </Link>
           </ul>
     </div>
-  )
+  );
 }

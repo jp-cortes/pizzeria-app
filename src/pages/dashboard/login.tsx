@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
+import { Layout } from '@/components/Layout';
 import axios from 'axios';
 import styles from  '@/styles/Login.module.css';
-import { Layout } from '@/components/Layout';
 
 export default function Login() {
     

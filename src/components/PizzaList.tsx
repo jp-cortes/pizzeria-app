@@ -1,10 +1,11 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { PizzaCard } from './PizzaCard';
 import styles from '@/styles/PizzaList.module.css';
 
 
 
  function mapProduct(pizzaList: ProductBase[]): ReactNode {
+  //only 6 product will be shown on homepage
   return pizzaList?.slice(0,6).map((pizza) => (
      <PizzaCard pizza={pizza} key={pizza._id} />
    ));
@@ -21,5 +22,5 @@ export  function PizzaList({ pizzaList }: PizzaList) {
           {mapProduct(pizzaList)}
         </div>
     </div>
-  )
+  );
 }

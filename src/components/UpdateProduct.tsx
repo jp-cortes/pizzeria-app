@@ -1,19 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import styles from '@/styles/AddProduct.module.css';
 
 type Props = {
     setUpdate: Function;
     productId: string;
-}
+};
 
 export function UpdateProduct({ setUpdate, productId }: Props) {
-  const [file, setFile] = useState<Blob | string >('');
-  const [title, setTitle] = useState<string | null>(null);
-  const [desc, setDesc] = useState<string | null>(null);
-  const [prices, setPrices] = useState<number[]| string[]>([]);
-  const [options, setOptions] = useState<[]>([]);
-  const [extra, setExtra] = useState<object | null>(null);
+  //states
+  const [file, setFile] = useState<Blob | string >('');//image
+  const [title, setTitle] = useState<string | null>(null);//title
+  const [desc, setDesc] = useState<string | null>(null);//description
+  const [prices, setPrices] = useState<number[]| string[]>([]);//prices
+  const [options, setOptions] = useState<[]>([]); 
+  const [extra, setExtra] = useState<object | null>(null);//extra options
   const [currentProduct, setCurrentProduct] = useState<ProductBase | null>(null);
 
   function changePrice(e: React.ChangeEvent<HTMLInputElement>, index: number) {
@@ -158,7 +159,6 @@ async function handleUpdate(e: { preventDefault: () => void; }) {
              placeholder='Item'
              name='text'
              onChange={handleExtraInput}
-            //  defaultValue={''}
              />
              <input
              className={`${styles.input} ${styles.inputSm}`}
@@ -167,7 +167,6 @@ async function handleUpdate(e: { preventDefault: () => void; }) {
              placeholder='Item'
              name='price'
              onChange={handleExtraInput}
-            //  defaultValue={''}
              />
             
            

@@ -1,10 +1,9 @@
-import React, { PropsWithChildren } from 'react';
 import Navbar from './Navbar';
 import Footer from './Footer';
 
 interface Props {
-  children: React.ReactNode,
-}
+  children: React.ReactNode;
+};
 
 export function Layout (props:Props) {
   return (
@@ -13,5 +12,5 @@ export function Layout (props:Props) {
       {props.children}
       <Footer/>
     </>
-  )
+  );
 }

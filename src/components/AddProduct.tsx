@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import styles from '@/styles/AddProduct.module.css';
 
 type Props = {
     setClose: Function;
-}
+};
 
 export function AddProduct({ setClose }: Props) {
-  const [file, setFile] = useState<string | Blob |null>(null);
-  const [title, setTitle] = useState<string | null>(null);
-  const [desc, setDesc] = useState<string | null>(null);
-  const [prices, setPrices] = useState<number[]| string[]>([]);
+  const [file, setFile] = useState<string | Blob >('');//image
+  const [title, setTitle] = useState<string | null>(null);//title
+  const [desc, setDesc] = useState<string | null>(null);//description
+  const [prices, setPrices] = useState<number[]| string[]>([]);// prices
   const [extraOptions, setExtraOptions] = useState([]);
-  const [extra, setExtra] = useState<object | null>(null);
+  const [extra, setExtra] = useState<object | null>(null);//extra options
 
   function changePrice(e: React.ChangeEvent<HTMLInputElement>, index: number) {
     const currentPrices = prices;
@@ -56,7 +56,7 @@ async function handleCreate(e: { preventDefault: () => void; }) {
     location.reload();//reload the page if the product is added
   } catch (error) {
     console.log(error);
-  }
+  };
 }
 
   return (

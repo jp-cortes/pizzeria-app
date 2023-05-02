@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {  PayPalScriptProvider, PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import { useRouter } from 'next/router';
 import { reset } from '@/redux/cartSlice';
 import { OrderDetail } from '@/components/OrderDetail';
 import { Layout } from '@/components/Layout';
+import Image from 'next/image';
 import axios from 'axios';
 import styles from '@/styles/Cart.module.css';
 

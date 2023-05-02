@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import Image from 'next/image';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addProduct } from '@/redux/cartSlice';
 import { Layout } from '@/components/Layout';
+import Image from 'next/image';
 import axios from 'axios';
 import styles from '@/styles/Product.module.css';
 
@@ -106,7 +106,7 @@ dispatch(addProduct({...pizza, extras, price, quantity }));
         </div>
     </div>
    </Layout>
-  )
+  );
 }
 
 
@@ -119,5 +119,5 @@ export async function getServerSideProps({ params } :{ params : ProductBase }) {
       props: {
         pizza: resp.data,
       }
-    }
+    };
   }

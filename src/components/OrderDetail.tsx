@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styles from '@/styles/OrderDetail.module.css';
 
 type Props = {
     total: number;
     createOrder: Function;
     setCash: Function;
-}
+};
 
 export function OrderDetail({ total, createOrder, setCash }: Props) {
   const [customer, setCustomer] = useState("");
   const [address, setAddress] = useState("");
 
   function handleClick() {
-    createOrder({ customer, address, total, method: 0})
+    createOrder({ customer, address, total, method: 0});
   }
   
     return (
@@ -51,5 +51,5 @@ export function OrderDetail({ total, createOrder, setCash }: Props) {
             </button>
         </div>
     </div>
-  )
+  );
 }

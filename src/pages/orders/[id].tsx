@@ -1,4 +1,3 @@
-import React from 'react';
 import { Layout } from '@/components/Layout';
 import Image from 'next/image';
 import axios from 'axios';
@@ -129,5 +128,5 @@ export async function getServerSideProps({ params }: { params : Partial<ProductO
       props: {
         order: resp.data,
       }
-    }
+    };
   }

@@ -1,12 +1,11 @@
 import { Layout } from '@/components/Layout';
-import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from '@/styles/Promotions.module.css';
 
-type Props = {}
 
-export default function Promotions({}: Props) {
+
+export default function Promotions() {
   return (
     <Layout>
       <div className={styles.container}>
