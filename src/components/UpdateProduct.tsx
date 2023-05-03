@@ -7,14 +7,19 @@ type Props = {
     productId: string;
 };
 
+type Options = {
+  text: string;
+  price: string;
+}
+
 export function UpdateProduct({ setUpdate, productId }: Props) {
   //states
   const [file, setFile] = useState<Blob | string >('');//image
   const [title, setTitle] = useState<string | null>(null);//title
   const [desc, setDesc] = useState<string | null>(null);//description
   const [prices, setPrices] = useState<number[]| string[]>([]);//prices
-  const [options, setOptions] = useState<[]>([]); 
-  const [extra, setExtra] = useState<object | null>(null);//extra options
+  const [options, setOptions] = useState<Array<Options> | any[]>([]); 
+  const [extra, setExtra] = useState<null | any>(null);//extra options>
   const [currentProduct, setCurrentProduct] = useState<ProductBase | null>(null);
 
   function changePrice(e: React.ChangeEvent<HTMLInputElement>, index: number) {
@@ -29,7 +34,7 @@ function handleExtraInput(e: React.ChangeEvent<HTMLInputElement>) {
 }
 
 function handleExtra() {
-  //handle all extra ingledient in the form
+  //handle all extra ingredient in the form
   setOptions((prev) => [...prev, extra]);
 }
 
@@ -54,6 +59,7 @@ async function handleUpdate(e: { preventDefault: () => void; }) {
         desc: desc || currentProduct?.desc,
         prices: prices,
         extraOptions: options,
+        img: currentProduct?.img,
     }
     
     
@@ -99,7 +105,7 @@ async function handleUpdate(e: { preventDefault: () => void; }) {
             <br/>
             <input 
             type='file' 
-            onChange={(e) =>  setFile(e.target.files[0])}
+            onChange={(e: any) =>  setFile(e.target.files[0])}
             />
 
           </div>
@@ -188,7 +194,7 @@ async function handleUpdate(e: { preventDefault: () => void; }) {
                 </span>
             ))}
             {/* this  will add the extra options */}
-             {options.map((option:{ text: string, price: string }) => (
+             {options.map((option) => (
                 <>
                 <p>New option</p>
               <span

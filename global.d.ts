@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { type } from "os";
 
 declare global {
     var myGlobal: mongoose;
@@ -16,6 +17,7 @@ type ProductBase = {
   img: string;
   prices: number[];
   extraOptions: ProductOptions[];
+  id?: string; //params id
   createdAt: string;
   updatedAt: string;
   __v: number;
@@ -43,21 +45,18 @@ type PizzaProduct = {
     title: string; 
     price: number; 
     quantity: number;
-     extras: [
-       {
-        text: string; 
-        _id: string
-      }
-    ];
+     extras: ProductOptions[];
     createdAt: string;  
   };
   
+   type Cart = {
+    quantity: number;
+    total: number;
+    products: ProductCart[];
+  };
+
   interface RootState {
-    cart: {
-      quantity: number;
-      total: number;
-      products: ProductCart[];
-    };
+    cart: Cart
   };
 
   type PaypalButton = {
@@ -72,6 +71,7 @@ type PizzaProduct = {
     address: string;
     total: number;
     method: number;
+    id?: string; //params id
   };
 
   type Ctx = {

@@ -1,5 +1,6 @@
-import { Layout } from '@/components/Layout';
+import { Layout } from '../../components/Layout';
 import Image from 'next/image';
+import { HeadDocument } from '@/components/HeadDocument';
 import axios from 'axios';
 import styles from '@/styles/Orders.module.css';
 
@@ -13,6 +14,8 @@ function StatusClass(index: number) {
 }
 
   return (
+    <>
+    <HeadDocument title={`order id${order._id}`}/>
    <Layout>
      <div className={styles.container}>
         <div className={styles.left}>
@@ -46,7 +49,7 @@ function StatusClass(index: number) {
             </div>
             <div className={styles.row}>
                 <div className={StatusClass(0)}>
-                    <Image src='/img/paid.png' width={30} height={30} alt=''/>
+                    <Image src='/img/paid.png' width={30} height={30} alt='paid'/>
                     <span>Payment</span>
                     <div className={styles.checkedIcon}>
                         <Image
@@ -59,7 +62,7 @@ function StatusClass(index: number) {
                     </div>
                 </div>
                 <div className={StatusClass(1)}>
-                    <Image src='/img/bake.png' width={30} height={30} alt=''/>
+                    <Image src='/img/bake.png' width={30} height={30} alt='preparing'/>
                     <span>Preparing</span>
                     <div className={styles.checkedIcon}>
                         <Image
@@ -72,7 +75,7 @@ function StatusClass(index: number) {
                     </div>
                 </div>
                 <div className={StatusClass(2)}>
-                    <Image src='/img/bike.png' width={30} height={30} alt=''/>
+                    <Image src='/img/bike.png' width={30} height={30} alt='on-the-way'/>
                     <span>On the way</span>
                     <div className={styles.checkedIcon}>
                         <Image
@@ -85,7 +88,7 @@ function StatusClass(index: number) {
                     </div>
                 </div>
                 <div className={StatusClass(3)}>
-                    <Image src='/img/delivered.png' width={30} height={30} alt=''/>
+                    <Image src='/img/delivered.png' width={30} height={30} alt='delivered'/>
                     <span>Delivered</span>
                     <div className={styles.checkedIcon}>
                         <Image
@@ -116,6 +119,7 @@ function StatusClass(index: number) {
         </div>
     </div>
    </Layout>
+    </>
   );
 }
 

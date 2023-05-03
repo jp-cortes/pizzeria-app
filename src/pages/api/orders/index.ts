@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import dbConnect from "../../../../util/mongo";
-import Order from "@/models/Order";
+import Order from "../../../models/Order";
 
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {

@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { Layout } from '@/components/Layout';
-import { DeleteProduct }from '@/components/DeleteProduct';
-import { UpdateProduct } from '@/components/UpdateProduct';
+import { Layout } from '../../components/Layout';
+import { DeleteProduct }from '../../components/DeleteProduct';
+import { UpdateProduct } from '../../components/UpdateProduct';
+import { HeadDocument } from '@/components/HeadDocument';
 import Image from 'next/image';
 import axios from 'axios';
 import styles from '@/styles/Dashboard.module.css';
@@ -49,6 +50,8 @@ export default function Dashboard({ orders, products }: DasboardProps) {
 
   
   return (
+    <>
+    <HeadDocument title={`Dasboard`}/>
    <Layout>
      <div className={styles.container}>
       <button 
@@ -145,6 +148,7 @@ export default function Dashboard({ orders, products }: DasboardProps) {
       {update && <UpdateProduct setUpdate={setUpdate} productId={productId}/>}
     </div>
    </Layout>
+    </>
   );
 }
 

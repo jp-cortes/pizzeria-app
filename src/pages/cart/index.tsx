@@ -2,12 +2,15 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {  PayPalScriptProvider, PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import { useRouter } from 'next/router';
-import { reset } from '@/redux/cartSlice';
-import { OrderDetail } from '@/components/OrderDetail';
-import { Layout } from '@/components/Layout';
+import { reset } from '../../redux/cartSlice';
+import { OrderDetail } from '../../components/OrderDetail';
+import { Layout } from '../../components/Layout';
+import { HeadDocument } from '@/components/HeadDocument';
 import Image from 'next/image';
 import axios from 'axios';
 import styles from '@/styles/Cart.module.css';
+
+
 
 
 export default function Cart() {
@@ -24,7 +27,7 @@ const amount = `${cart.total}`;
 const currency = "EUR";
 const style = {"layout":"vertical"};
 
-async function createOrder(data: Partial<ProductOrder>) {
+async function createOrder(data: unknown) {
   try {
     const res = await axios.post('http://localhost:3000/api/orders', data);
     if(res.status === 201) {
@@ -58,11 +61,11 @@ const ButtonWrapper = ({ currency, showSpinner }: PaypalButton) => {
   return (<>
           { (showSpinner && isPending) && <div className="spinner" /> }
           <PayPalButtons
-              style={style}
+              style={{ layout: "vertical" }}
               disabled={false}
               forceReRender={[amount, currency, style]}
               fundingSource={undefined}
-              createOrder={(data, actions) => {
+              createOrder={(data: Record<string, unknown>, actions) => {
                   return actions.order
                       .create({
                           purchase_units: [
@@ -99,6 +102,8 @@ const ButtonWrapper = ({ currency, showSpinner }: PaypalButton) => {
 // console.log(open)
 
   return (
+    <>
+    <HeadDocument title={`Cart`}/>
     <Layout>
           <div className={styles.container}>
     <div className={styles.left}>
@@ -196,5 +201,6 @@ const ButtonWrapper = ({ currency, showSpinner }: PaypalButton) => {
     {cash && <OrderDetail total={cart.total} createOrder={createOrder}  setCash={setCash}/>}
   </div>
     </Layout>
+    </>
   );
 }

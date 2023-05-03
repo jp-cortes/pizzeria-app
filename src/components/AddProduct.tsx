@@ -13,9 +13,9 @@ export function AddProduct({ setClose }: Props) {
   const [file, setFile] = useState<Blob | string>('');//image
   const [title, setTitle] = useState<string | null>(null);//title
   const [desc, setDesc] = useState<string | null>(null);//description
-  const [prices, setPrices] = useState<number[] | string[]>([]);// prices
-  const [extraOptions, setExtraOptions] = useState <Options[]>([]);
-  const [extra, setExtra] = useState({});//extra options
+  const [prices, setPrices] = useState<Array<Options> | any[]>([]);// prices
+  const [extraOptions, setExtraOptions] = useState<Array<Options> | any[]>([]);
+  const [extra, setExtra] = useState<null | any >(null);//extra options
 
   function changePrice(e: React.ChangeEvent<HTMLInputElement>, index: number) {
     const currentPrices = prices;
@@ -73,7 +73,7 @@ async function handleCreate(e: { preventDefault: () => void; }) {
         <div className={styles.item}>
 
           <label className={styles.label}>Choose an image</label>
-          <input type="file" onChange={(e) => setFile(e.target.files[0])} />
+          <input type="file" onChange={(e: any) => setFile(e.target.files[0])} />
         </div>
         <div className={styles.item}>
           <label className={styles.label}>Title</label>

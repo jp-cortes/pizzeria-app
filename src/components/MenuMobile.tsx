@@ -34,7 +34,7 @@ function handleClick() {
             </Link>
             <Link 
             onClick={handleClick}
-            href='/products'>
+            href='/all-products'>
             <li className={styles.listItemMobile}>Products</li>
             </Link>
             

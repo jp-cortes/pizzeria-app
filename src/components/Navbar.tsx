@@ -43,7 +43,7 @@ export default function Navbar() {
             <Link href='/promotions'>
             <li className={styles.listItem}>Promotions</li>
             </Link>
-            <Link href='/products'>
+            <Link href='/all-products'>
             <li className={styles.listItem}>Products</li>
             </Link>
             

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { Layout } from '@/components/Layout';
+import { Layout } from '../../components/Layout';
+import { HeadDocument } from '@/components/HeadDocument';
 import axios from 'axios';
 import styles from  '@/styles/Login.module.css';
 
@@ -28,6 +29,8 @@ async function handleCLick(e: { preventDefault: () => void; }) {
 
 
   return (
+    <>
+    <HeadDocument title={`Dashboard Login`}/>
    <Layout>
      <div className={styles.container}>
         <div className={styles.wrapper}>
@@ -63,5 +66,6 @@ async function handleCLick(e: { preventDefault: () => void; }) {
         </div>
     </div>
    </Layout>
+    </>
   );
 }

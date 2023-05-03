@@ -1,7 +1,7 @@
 import type { AppProps } from 'next/app';
 import { Josefin_Sans } from 'next/font/google';
 import { Provider } from 'react-redux';
-import store from '@/redux/store';
+import store from '../redux/store';
 import '@/styles/globals.css';
 
 const grandStander = Josefin_Sans({ 

@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { PizzaCard } from '@/components/PizzaCard';
-import { AddButton } from '@/components/AddButton';
-import { AddProduct } from '@/components/AddProduct';
-import { Layout } from '@/components/Layout';
+import { PizzaCard } from '../../components/PizzaCard';
+import { AddButton } from '../../components/AddButton';
+import { AddProduct } from '../../components/AddProduct';
+import { Layout } from '../../components/Layout';
+import { HeadDocument } from '@/components/HeadDocument';
 import Link from 'next/link';
 import axios from 'axios';
 import styles from '@/styles/AllProducts.module.css';
@@ -17,6 +18,8 @@ import styles from '@/styles/AllProducts.module.css';
 
 
     return (
+      <>
+      <HeadDocument title={`All Products`}/>
    <Layout>
      {admin && 
       <>
@@ -41,6 +44,7 @@ import styles from '@/styles/AllProducts.module.css';
           </div>
       </div>
    </Layout>
+      </>
     );
   }
 

@@ -1,12 +1,14 @@
-import { Layout } from '@/components/Layout';
+import { Layout } from '../../components/Layout';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from '@/styles/Promotions.module.css';
-
+import { HeadDocument } from '@/components/HeadDocument';
 
 
 export default function Promotions() {
   return (
+    <>
+    <HeadDocument title='Promotion'/>
     <Layout>
       <div className={styles.container}>
         <div className={styles.wrapper}>
@@ -19,7 +21,8 @@ export default function Promotions() {
               href='/product/645025a02f0e77129f3ba5ca'>I want the promotion!</Link>
         </div>
         </div>
-
     </Layout>
+    </>
+
   );
 }
