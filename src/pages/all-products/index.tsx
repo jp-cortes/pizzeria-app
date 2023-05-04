@@ -58,7 +58,7 @@ import styles from '@/styles/AllProducts.module.css';
       admin = true; 
     }
   
-    const resp = await axios.get("http://localhost:3000/api/products");
+    const resp = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/products`);
   
     return {
       props: {

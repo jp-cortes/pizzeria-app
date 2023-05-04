@@ -15,7 +15,7 @@ const router = useRouter();
 async function handleCLick(e: { preventDefault: () => void; }) {
     e.preventDefault();
     try {
-        await axios.post("http://localhost:3000/api/login", {
+        await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
             username, 
             password,
         });

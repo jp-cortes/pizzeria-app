@@ -51,7 +51,7 @@ dispatch(addProduct({...pizza, extras, price, quantity }));
 
   return (
     <>
-    <HeadDocument title={`${pizza.title}`}/>
+    <HeadDocument title={`${pizza.title} Pizza`}/>
     <Layout>
       <div className={styles.container}>
          <div className={styles.left}>
@@ -115,7 +115,7 @@ dispatch(addProduct({...pizza, extras, price, quantity }));
 
 
 export async function getServerSideProps({ params } :{ params : ProductBase }) {
-    const resp = await axios.get(`http://localhost:3000/api/products/${params.id}`);
+    const resp = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/products/${params.id}`);
 
     // console.log(resp, 'server')
    

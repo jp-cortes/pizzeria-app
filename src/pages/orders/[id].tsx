@@ -15,7 +15,7 @@ function StatusClass(index: number) {
 
   return (
     <>
-    <HeadDocument title={`order id${order._id}`}/>
+    <HeadDocument title={`Pizzeria order id ${order._id}`}/>
    <Layout>
      <div className={styles.container}>
         <div className={styles.left}>
@@ -124,7 +124,7 @@ function StatusClass(index: number) {
 }
 
 export async function getServerSideProps({ params }: { params : Partial<ProductOrder> }) {
-    const resp = await axios.get(`http://localhost:3000/api/orders/${params.id}`);
+    const resp = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/orders/${params.id}`);
     
     // console.log(resp, 'server');
    

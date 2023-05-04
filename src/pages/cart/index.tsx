@@ -29,7 +29,7 @@ const style = {"layout":"vertical"};
 
 async function createOrder(data: unknown) {
   try {
-    const res = await axios.post('http://localhost:3000/api/orders', data);
+    const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/orders`, data);
     if(res.status === 201) {
       dispatch(reset());//redux
       router.push(`/orders/${res.data._id}`);
@@ -81,7 +81,7 @@ const ButtonWrapper = ({ currency, showSpinner }: PaypalButton) => {
                     return orderId;
                   })
               }}
-              onApprove={function (_data, actions): any {
+              onApprove={function (_data, actions): any { //type Promise<void> cannot be un defined
                   return actions?.order?.capture().then(function (details) {
                     const shipping = details.purchase_units[0].shipping;
                     createOrder({
@@ -106,7 +106,7 @@ const ButtonWrapper = ({ currency, showSpinner }: PaypalButton) => {
 
   return (
     <>
-    <HeadDocument title={`Cart`}/>
+    <HeadDocument title={`Pizzeria Cart`}/>
     <Layout>
           <div className={styles.container}>
     <div className={styles.left}>

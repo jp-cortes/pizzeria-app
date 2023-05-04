@@ -51,7 +51,7 @@ export default function Dashboard({ orders, products }: DasboardProps) {
   
   return (
     <>
-    <HeadDocument title={`Dasboard`}/>
+    <HeadDocument title={`Pizzeria Dasboard`}/>
    <Layout>
      <div className={styles.container}>
       <button 
@@ -166,8 +166,8 @@ if(myCookie.token !== process.env.TOKEN) {
 }
 
 
-  const productResp = await axios.get("http://localhost:3000/api/products");
-  const orderResp = await axios.get("http://localhost:3000/api/orders");
+  const productResp = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/products`);
+  const orderResp = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/orders`);
 
   return {
     props: {
