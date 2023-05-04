@@ -81,7 +81,7 @@ const ButtonWrapper = ({ currency, showSpinner }: PaypalButton) => {
                     return orderId;
                   })
               }}
-              onApprove={function (_data, actions): unknown {
+              onApprove={function (_data, actions): any {
                   return actions?.order?.capture().then(function (details) {
                     const shipping = details.purchase_units[0].shipping;
                     createOrder({
