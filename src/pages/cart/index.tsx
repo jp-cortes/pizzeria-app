@@ -29,7 +29,7 @@ const style = {"layout":"vertical"};
 
 async function createOrder(data: unknown) {
   try {
-    const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/orders`, data);
+    const res = await axios.post('http://localhost:3000/api/orders', data);
     if(res.status === 201) {
       dispatch(reset());//redux
       router.push(`/orders/${res.data._id}`);
@@ -65,8 +65,8 @@ const ButtonWrapper = ({ currency, showSpinner }: PaypalButton) => {
               disabled={false}
               forceReRender={[amount, currency, style]}
               fundingSource={undefined}
-              createOrder={(_data, actions) => {
-                  return actions.order
+              createOrder={async (data, actions) => {
+                  const orderId = await actions.order
                   .create({
                     purchase_units: [
                       {
@@ -76,26 +76,18 @@ const ButtonWrapper = ({ currency, showSpinner }: PaypalButton) => {
                         },
                       },
                     ],
-                  })
-                  .then((orderId) => {
-                    return orderId;
-                  })
-              }}
-              onApprove={function (_data, actions): any { //type Promise<void> cannot be un defined
-                  return actions?.order?.capture().then(function (details) {
-                    const shipping = details.purchase_units[0].shipping;
-                    createOrder({
-                      customer: shipping?.name?.full_name,
-                      address: shipping?.address?.address_line_1,
-                      total: cart.total,
-                      method: 1,//
-                    })
-          
-                  })
-                  .catch((error) => {
-                    console.log(error)
-                  })
-                  .finally(() => console.log('Thank for your Shopping'));
+                  });
+                return orderId;
+              }}//remove async await
+              onApprove={async function (data, actions):Promise<any> {
+                  const details = await actions?.order?.capture();
+                const shipping = details?.purchase_units[0].shipping;
+                createOrder({
+                  customer: shipping?.name?.full_name,
+                  address: shipping?.address?.address_line_1,
+                  total: cart.total,
+                  method: 1, //
+                });
               }}
           />
       </>
@@ -106,7 +98,7 @@ const ButtonWrapper = ({ currency, showSpinner }: PaypalButton) => {
 
   return (
     <>
-    <HeadDocument title={`Pizzeria Cart`}/>
+    <HeadDocument title={`Cart`}/>
     <Layout>
           <div className={styles.container}>
     <div className={styles.left}>
