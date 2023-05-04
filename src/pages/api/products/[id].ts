@@ -15,7 +15,7 @@ export default async function handler(
     
     } = req;
     
-  dbConnect();
+  await dbConnect();
 
   const token = cookies.token;
 

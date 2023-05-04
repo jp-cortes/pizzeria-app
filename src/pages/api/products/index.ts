@@ -12,7 +12,7 @@ export default async function handler(
 
     const token = cookies.token;
     
-  dbConnect();
+  await dbConnect();
 
   if(method === 'GET') {
     try {
