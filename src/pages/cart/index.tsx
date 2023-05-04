@@ -65,7 +65,7 @@ const ButtonWrapper = ({ currency, showSpinner }: PaypalButton) => {
               disabled={false}
               forceReRender={[amount, currency, style]}
               fundingSource={undefined}
-              createOrder={async (data: Record<string, unknown>, actions) => {
+              createOrder={async (data, actions) => {
                   const orderId = await actions.order
                   .create({
                     purchase_units: [
@@ -79,17 +79,15 @@ const ButtonWrapper = ({ currency, showSpinner }: PaypalButton) => {
                   });
                 return orderId;
               }}//remove async await
-              onApprove={function (data, actions) {
-                  return actions.order?.capture().then(async function (details) {
-                    const shipping = details.purchase_units[0].shipping;
-                    createOrder({
-                      customer: shipping?.name?.full_name,
-                      address: shipping?.address?.address_line_1,
-                      total: cart.total,
-                      method: 1,//
-                    })
-          
-                  });
+              onApprove={async function (data, actions) {
+                  const details = await actions.order.capture();
+                const shipping = details.purchase_units[0].shipping;
+                createOrder({
+                  customer: shipping.name.full_name,
+                  address: shipping.address.address_line_1,
+                  total: cart.total,
+                  method: 1, //
+                });
               }}
           />
       </>
