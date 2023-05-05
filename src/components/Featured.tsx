@@ -17,7 +17,7 @@ export function Featured() {
             setImgIndex(imgIndex !== 0 ? imgIndex - 1 : 2);
         }
         else if(direction === 'right') {
-            setImgIndex(imgIndex !== 2 ? imgIndex + 1 : 2);
+            setImgIndex(imgIndex !== 2 ? imgIndex + 1 : 0);
         }
     }
 

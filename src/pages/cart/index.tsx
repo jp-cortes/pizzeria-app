@@ -29,7 +29,7 @@ const style = {"layout":"vertical"};
 
 async function createOrder(data: unknown) {
   try {
-    const res = await axios.post('http://localhost:3000/api/orders', data);
+    const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}`, data);
     if(res.status === 201) {
       dispatch(reset());//redux
       router.push(`/orders/${res.data._id}`);
@@ -116,7 +116,7 @@ const ButtonWrapper = ({ currency, showSpinner }: PaypalButton) => {
         <tbody>
 
         {cart.products.map((product: ProductCart) => (
-          <tr className={styles.tr} key={`productID-${product.createdAt}`}>
+          <tr className={styles.tr} key={`productID-${crypto.randomUUID()}`}>
           <td>
             <div className={styles.imgContainer}>
               <Image
@@ -177,7 +177,7 @@ const ButtonWrapper = ({ currency, showSpinner }: PaypalButton) => {
                     "client-id": `${process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID}`,
                     components: "buttons",
                     currency: "EUR",
-                    
+                    "disable-funding": "credit,card,p24",
                   }}
                   >
 				<ButtonWrapper
