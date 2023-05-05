@@ -73,7 +73,7 @@
     margin-bottom: 8px;
 
     background: var(--color-white);
-    color: teal;
+    color: var(--color-teal);
     font-weight: bold;
   }
   

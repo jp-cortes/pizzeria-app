@@ -37,19 +37,19 @@ async function handleCLick(e: { preventDefault: () => void; }) {
             <h1 className={styles.title}>Admin Dashboard</h1>
             <form className={styles.form}
             onSubmit={handleCLick}>
+                <label>Username</label>
             <input
-            placeholder='Username'
-            className={error ? styles.inputError :styles.login}
+            className={error ? styles.inputError : styles.login}
             onChange={(e) => {
                 setError(false);
                 setUsername(e.target.value);
             }}
             
             />
+            <label>Password</label>
             <input
-            placeholder='Password'
             type='password'
-            className={error ? styles.inputError :styles.input}
+            className={error ? styles.inputError : styles.input}
             onChange={(e) => {
                 setError(false);
                 setPassword(e.target.value);

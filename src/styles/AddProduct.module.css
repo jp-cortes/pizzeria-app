@@ -98,8 +98,8 @@
   .addButton {
     width: 25%;
     border: none;
-    background-color: teal;
-    color: white;
+    background-color: (--color-teal);
+    color: var(--color-white);
     font-weight: 500;
     cursor: pointer;
     padding: 5px 0;
