@@ -29,7 +29,7 @@ const style = {"layout":"vertical"};
 
 async function createOrder(data: unknown) {
   try {
-    const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}`, data);
+    const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/orders`, data);
     if(res.status === 201) {
       dispatch(reset());//redux
       router.push(`/orders/${res.data._id}`);
