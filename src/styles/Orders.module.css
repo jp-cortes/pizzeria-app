@@ -17,6 +17,7 @@
     width: 80%;
     display: flex;
     justify-content: space-between;
+    margin: 0 auto;
 }
 
 .inProgress {
@@ -82,7 +83,18 @@
     cursor: not-allowed;
 }
 
-@media screen and (max-width:480px) {
+
+
+@media screen and (max-width:900px) {
+    .container {
+        flex-direction: column;
+    }  
+    .wrapper {
+        margin-top: 30px;
+    }
+}
+
+@media screen and (max-width:600px) {
     .container {
         flex-direction: column;
     }    
@@ -101,19 +113,19 @@
 
     .id::before {
         content: "Order ID: ";
-        font-weight: 500;
+        font-weight: bold;
     }
     .name::before {
         content: "Customer: ";
-        font-weight: 500;
+        font-weight: bold;
     }
     .address::before {
         content: "Address: ";
-        font-weight: 500;
+        font-weight: bold;
     }
     .total::before {
         content: "Total: ";
-        font-weight: 500;
+        font-weight: bold;
     }
 
     .row:last-child {

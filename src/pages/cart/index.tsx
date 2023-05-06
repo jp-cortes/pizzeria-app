@@ -40,7 +40,6 @@ async function createOrder(data: unknown) {
 
 }
 
-
 // Custom component to wrap the PayPalButtons and handle currency changes
 const ButtonWrapper = ({ currency, showSpinner }: PaypalButton) => {
   // usePayPalScriptReducer can be use only inside children of PayPalScriptProviders
@@ -94,7 +93,7 @@ const ButtonWrapper = ({ currency, showSpinner }: PaypalButton) => {
   );
 }
 
-// console.log(open)
+
 
   return (
     <>

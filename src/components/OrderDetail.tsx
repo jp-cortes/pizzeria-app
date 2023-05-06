@@ -1,4 +1,5 @@
 import { useState } from 'react';
+// import * as Swal from 'sweetalert2/dist/sweetalert2.js';
 import styles from '@/styles/OrderDetail.module.css';
 
 type Props = {
@@ -12,6 +13,11 @@ export function OrderDetail({ total, createOrder, setCash }: Props) {
   const [address, setAddress] = useState("");
 
   function handleClick() {
+    if(total === 0){
+        alert('Empty cart');
+        return;
+    }
+
     createOrder({ customer, address, total, method: 0});
   }
   

@@ -63,7 +63,7 @@ export default function Navbar() {
         </div>
         <div className={styles.item}>
           <div className={styles.cart}>
-            <Link href='/cart'>
+            <Link href={'/cart'}>
             <Image src='/img/cart.png' alt='shopping_cart' width={30} height={30}/>
             </Link>
             <div className={styles.counter}>{quantity}</div>
