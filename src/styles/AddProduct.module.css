@@ -99,7 +99,7 @@
   .addButton {
     width: 25%;
     border: none;
-    background-color: (--color-teal);
+    background-color: var(--color-teal);
     color: var(--color-white);
     font-weight: 500;
     cursor: pointer;

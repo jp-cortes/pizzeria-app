@@ -115,6 +115,7 @@ async function handleUpdate(e: { preventDefault: () => void; }) {
             <input
             className={styles.input}
             type='text'
+            required
             onChange={(e) => setTitle(e.target.value)}
             defaultValue={currentProduct?.title}
             />
@@ -123,6 +124,7 @@ async function handleUpdate(e: { preventDefault: () => void; }) {
             <label className={styles.label}>Description</label>
             <textarea
             rows={4}
+            required
             onChange={(e) => setDesc(e.target.value)}
             defaultValue={currentProduct?.desc}
             />
@@ -134,6 +136,7 @@ async function handleUpdate(e: { preventDefault: () => void; }) {
             <input
             className={`${styles.input} ${styles.inputSm}`}
             type='number'
+            required
             min={1}
             placeholder='Small'
             onChange={(e) => changePrice(e, 0)}
@@ -142,6 +145,7 @@ async function handleUpdate(e: { preventDefault: () => void; }) {
             <input
             className={`${styles.input} ${styles.inputSm}`}
             type='number'
+            required
             min={1}
             placeholder='Medium'
             onChange={(e) => changePrice(e, 1)}
@@ -150,6 +154,7 @@ async function handleUpdate(e: { preventDefault: () => void; }) {
             <input
             className={`${styles.input} ${styles.inputSm}`}
             type='number'
+            required
             min={1}
             placeholder='Large'
             onChange={(e) => changePrice(e, 2)}
@@ -163,6 +168,7 @@ async function handleUpdate(e: { preventDefault: () => void; }) {
             <input
              className={`${styles.input} ${styles.inputSm}`}
              type='text'
+             required
              placeholder='Item'
              name='text'
              onChange={handleExtraInput}
@@ -170,6 +176,7 @@ async function handleUpdate(e: { preventDefault: () => void; }) {
              <input
              className={`${styles.input} ${styles.inputSm}`}
              type='number'
+             required
              min={1}
              placeholder='Item'
              name='price'

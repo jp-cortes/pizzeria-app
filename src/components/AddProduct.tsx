@@ -73,20 +73,25 @@ async function handleCreate(e: { preventDefault: () => void; }) {
         <div className={styles.item}>
 
           <label className={styles.label}>Choose an image</label>
-          <input type="file" onChange={(e: any) => setFile(e.target.files[0])} />
+          <input type="file"
+          required
+           onChange={(e: any) => setFile(e.target.files[0])} />
         </div>
         <div className={styles.item}>
           <label className={styles.label}>Title</label>
           <input
             className={styles.input}
             type="text"
+            required
             onChange={(e) => setTitle(e.target.value)}
           />
         </div>
         <div className={styles.item}>
 
           <label className={styles.label}>Description</label>
-          <textarea rows={4} onChange={(e) => setDesc(e.target.value)} />
+          <textarea rows={4}
+          required 
+          onChange={(e) => setDesc(e.target.value)} />
         </div>
         <div className={styles.item}>
           
@@ -95,6 +100,7 @@ async function handleCreate(e: { preventDefault: () => void; }) {
             <input
               className={`${styles.input} ${styles.inputSm}`}
               type="number"
+              required
               min={1}
               placeholder="Small"
               onChange={(e) => changePrice(e, 0)}
@@ -102,6 +108,7 @@ async function handleCreate(e: { preventDefault: () => void; }) {
             <input
               className={`${styles.input} ${styles.inputSm}`}
               type="number"
+              required
               min={1}
               placeholder="Medium"
               onChange={(e) => changePrice(e, 1)}
@@ -109,6 +116,7 @@ async function handleCreate(e: { preventDefault: () => void; }) {
             <input
               className={`${styles.input} ${styles.inputSm}`}
               type="number"
+              required
               min={1}
               placeholder="Large"
               onChange={(e) => changePrice(e, 2)}
@@ -120,6 +128,7 @@ async function handleCreate(e: { preventDefault: () => void; }) {
           <input
             className={`${styles.input} ${styles.inputSm}`}
             type="text"
+            required
             placeholder="Item"
             name="text"
             onChange={handleExtraInput}
@@ -127,6 +136,7 @@ async function handleCreate(e: { preventDefault: () => void; }) {
           <input
             className={`${styles.input} ${styles.inputSm}`}
             type="number"
+            required
             min={1}
             placeholder="Item"
             name="price"
