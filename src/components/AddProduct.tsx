@@ -54,7 +54,7 @@ async function handleCreate(e: { preventDefault: () => void; }) {
       img: url,
     };
     
-    await axios.post("http://localhost:3000/api/products", newProduct);
+    await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/products`, newProduct);
     setClose(true);//close the modal
     location.reload();//reload the page if the product is added
   } catch (error) {

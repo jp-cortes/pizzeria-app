@@ -41,7 +41,7 @@ function handleExtra() {
 useEffect(() => {
     async function getProduct() {
         try {
-            const resp = await axios.get(`http://localhost:3000/api/products/${productId}`);
+            const resp = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}products/${productId}`);
             setCurrentProduct(resp.data);
         } catch (error) {
             console.log(error);
@@ -77,7 +77,7 @@ async function handleUpdate(e: { preventDefault: () => void; }) {
       updatedProduct.img  = url;
     } 
     //  if there is no new image will be the same by default
-      await axios.put(`http://localhost:3000/api/products/${productId}`, updatedProduct);
+      await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/products/${productId}`, updatedProduct);
       setUpdate(true);//close the modal
       location.reload();//reload the page if the product is updated
     

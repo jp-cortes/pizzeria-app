@@ -15,7 +15,7 @@ export function DeleteProduct({ productId, setPizzaList, pizzaList, setWarning }
     async function handleDelete(id:string | number) {
         // console.log(id);
         try {
-          await axios.delete(`http://localhost:3000/api/products/${id}`);
+          await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/products/${id}`);
           setPizzaList(pizzaList.filter((pizza) => pizza._id !== id));
         } catch (error) {
           console.log(error);
