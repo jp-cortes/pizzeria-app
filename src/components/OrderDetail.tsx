@@ -28,6 +28,7 @@ export function OrderDetail({ total, createOrder, setCash }: Props) {
             <div className={styles.item}>
                 <label className={styles.label}>Name Surname</label>
                 <input
+                required
                 placeholder='Jhon Doe'
                 type='text'
                 className={styles.input}
@@ -37,6 +38,7 @@ export function OrderDetail({ total, createOrder, setCash }: Props) {
             <div className={styles.item}>
                 <label className={styles.label}>Phone Number</label>
                 <input
+                required
                 placeholder='+359 12 345 678'
                 type='text'
                 className={styles.input}
@@ -45,6 +47,7 @@ export function OrderDetail({ total, createOrder, setCash }: Props) {
             <div className={styles.item}>
                 <label className={styles.label}>Address</label>
                 <textarea
+                required
                 rows={5}
                 placeholder='Elton St. 505 Bg'
                 className={styles.textarea}

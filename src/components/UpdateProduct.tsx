@@ -41,7 +41,7 @@ function handleExtra() {
 useEffect(() => {
     async function getProduct() {
         try {
-            const resp = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}products/${productId}`);
+            const resp = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/products/${productId}`);
             setCurrentProduct(resp.data);
         } catch (error) {
             console.log(error);
@@ -49,7 +49,8 @@ useEffect(() => {
     }
     getProduct();
 
-}, [productId]);
+}, []);
+
 
 async function handleUpdate(e: { preventDefault: () => void; }) {
   e.preventDefault();
