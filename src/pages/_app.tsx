@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import store from '../redux/store';
 import '@/styles/globals.css';
 
-const grandStander = Josefin_Sans({ 
+const JosefinSans = Josefin_Sans({ 
   weight: ['400', '500', '600', '700'],
   style: ['normal', 'italic'],
   subsets: ['latin'],
@@ -13,7 +13,7 @@ const grandStander = Josefin_Sans({
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <Provider store={store}>
-      <main className={grandStander.className}>
+      <main className={JosefinSans.className}>
           <Component {...pageProps} />
       </main>
     </Provider>
