@@ -1,8 +1,8 @@
 import { Layout } from '../../components/Layout';
+import { HeadDocument } from '@/components/HeadDocument';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from '@/styles/Promotions.module.css';
-import { HeadDocument } from '@/components/HeadDocument';
 
 
 export default function Promotions() {
@@ -26,3 +26,4 @@ export default function Promotions() {
 
   );
 }
+
