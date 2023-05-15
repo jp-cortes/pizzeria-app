@@ -39,6 +39,7 @@ async function handleCLick(e: { preventDefault: () => void; }) {
             onSubmit={handleCLick}>
                 <label>Username</label>
             <input
+            placeholder='admin404'
             className={error ? styles.inputError : styles.login}
             onChange={(e) => {
                 setError(false);
@@ -48,6 +49,7 @@ async function handleCLick(e: { preventDefault: () => void; }) {
             />
             <label>Password</label>
             <input
+            placeholder='Admin@123'
             type='password'
             className={error ? styles.inputError : styles.input}
             onChange={(e) => {

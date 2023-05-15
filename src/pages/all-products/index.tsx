@@ -11,10 +11,8 @@ import styles from '@/styles/AllProducts.module.css';
 
 
   export  default function Products({ pizzaList, admin }: { pizzaList: ProductBase[], admin: boolean}) {
+    
     const [close, setClose] = useState(true);
-
-    const promoId = '645025a02f0e77129f3ba5ca';//promo id code
-
 
 
     return (
@@ -38,7 +36,7 @@ import styles from '@/styles/AllProducts.module.css';
               There is a  different Promotion everyday!
           </p>
           <div className={styles.wrapper}>
-            {pizzaList?.filter((item) =>  item._id !== promoId).map((pizza) => (
+            {pizzaList?.map((pizza) => (
        <PizzaCard pizza={pizza} key={pizza._id} />
      ))}
           </div>

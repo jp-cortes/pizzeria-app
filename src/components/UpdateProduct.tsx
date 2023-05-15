@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import styles from '@/styles/AddProduct.module.css';
+import styles from '@/styles/UpdateProduct.module.css';
 
 type Props = {
     setUpdate: Function;
@@ -190,7 +190,7 @@ async function handleUpdate(e: { preventDefault: () => void; }) {
               Add
             </button>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', alignItems: 'center', paddingTop: '10px'}}>
+          <div className={styles.actualOptions}>
             <p>Actual options</p>
             {/* render the actual options */}
             {currentProduct?.extraOptions.map((option) => (

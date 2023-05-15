@@ -77,7 +77,7 @@ const ButtonWrapper = ({ currency, showSpinner }: PaypalButton) => {
                     ],
                   });
                 return orderId;
-              }}//remove async await
+              }}
               onApprove={async function (data, actions):Promise<any> {
                   const details = await actions?.order?.capture();
                 const shipping = details?.purchase_units[0].shipping;
@@ -85,7 +85,7 @@ const ButtonWrapper = ({ currency, showSpinner }: PaypalButton) => {
                   customer: shipping?.name?.full_name,
                   address: shipping?.address?.address_line_1,
                   total: cart.total,
-                  method: 1, //
+                  method: 1,
                 });
               }}
           />
@@ -122,7 +122,7 @@ const ButtonWrapper = ({ currency, showSpinner }: PaypalButton) => {
                 src={product.img}
                 fill
                 style={{ objectFit: "cover" }}
-                alt=""
+                alt={product.title}
               />
             </div>
           </td>

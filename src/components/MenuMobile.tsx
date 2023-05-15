@@ -28,12 +28,6 @@ function handleClick() {
             </Link>
             <Link 
             onClick={handleClick}
-            href='/promotions'>
-            <li 
-            className={styles.listItemMobile}>Promotions</li>
-            </Link>
-            <Link 
-            onClick={handleClick}
             href='/all-products'>
             <li className={styles.listItemMobile}>Products</li>
             </Link>
