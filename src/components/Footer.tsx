@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import styles from '@/styles/Footer.module.css';
+import Link from 'next/link';
 
 
 export default function Footer() {
@@ -47,7 +48,11 @@ export default function Footer() {
             SATURDAY - SUNDAY 
             <br/> 12:00 - 00:00
           </p>
-        </div>
+        <Link href='https://github.com/jp-cortes/pizzeria-app'
+        className={styles.text}>
+        <Image src="/img/github-icon.png" width={40} height={40} alt="github-logo"/>
+        </Link>
+          </div>
       </div>
     </footer>
   );
