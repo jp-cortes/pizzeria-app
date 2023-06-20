@@ -25,7 +25,9 @@
     border-spacing: 20px;
     text-align: left;
 }
-
+.tbody {
+    text-transform: capitalize;
+}
 .nextStage:focus {
     background-color: rgba(23, 87, 87, 0.402);
 }
@@ -128,5 +130,16 @@
 
     .container {
         padding: 20px;
-    }    
+    }   
+    .table {
+        margin-top: 40px;
+        border-spacing: 2px;
+        text-align: center;
+    } 
+    .button:first-child {
+        margin-top: 10px;
+    }
+    .tdId, .thId, .tdCustomer, .thCustomer  {
+        display: none;
+    } 
 }

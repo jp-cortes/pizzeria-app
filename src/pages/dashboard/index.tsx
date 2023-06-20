@@ -63,7 +63,7 @@ export default function Dashboard({ orders, products }: DasboardProps) {
           <thead>
             <tr className={styles.trTitle}>
               <th>Image</th>
-              <th>Id</th>
+              <th className={styles.thId}>Id</th>
               <th>Title</th>
               <th>Price</th>
               <th>Action</th>
@@ -81,7 +81,7 @@ export default function Dashboard({ orders, products }: DasboardProps) {
                   alt={product.title}
                   />
                 </td>
-                <td>{product._id.slice(0, 5)}...</td>
+                <td className={styles.tdId}>{product._id.slice(0, 5)}...</td>
                 <td>{product.title}</td>
                 <td>€ {product.prices[0]}</td>
                 <td>
@@ -113,7 +113,7 @@ export default function Dashboard({ orders, products }: DasboardProps) {
               <thead>
                 <tr className={styles.trTitle}>
                   <th>Id</th>
-                  <th>Customer</th>
+                  <th className={styles.thCustomer}>Customer</th>
                   <th>Total</th>
                   <th>Payment</th>
                   <th>Status</th>
@@ -126,7 +126,7 @@ export default function Dashboard({ orders, products }: DasboardProps) {
                 key={order._id}>
                   <tr className={styles.trTitle}>
                     <td>{order._id.slice(0, 5)}...</td>
-                    <td>{order.customer}</td>
+                    <td className={styles.tdCustomer}>{order.customer}</td>
                     <td>€ {order.total}</td>
                     <td>
                       {order.method === 0 ? <span>cash</span> : <span>paid</span>}
